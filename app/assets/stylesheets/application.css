@@ -1,14 +1,17 @@
 header {
   height: 50px;
   width: 100%;
+  background-color: white;
   padding-bottom: 10px;
   border-bottom: 1px solid #bfbfc6;
   text-align: center;
+  position: fixed;
+  top: 0;
+  z-index: 10;
 }
 
 .main-wrapper {
   width: 100%;
-  height: 650px;
 }
 
 .logo-title {
@@ -18,12 +21,13 @@ header {
 }
 
 .home-image {
-  margin-top: 50px;
+  margin-top: 120px;
   margin-left: 150px;
   float: left;
 }
 
 .home-content {
+  margin-top: 30px;
   float: left;
   text-align: center;
 }
