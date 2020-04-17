@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
+gem 'bcrypt'    # ハッシュ関数
+
 gem 'rails-i18n' #エラーメッセージの日本語化
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
