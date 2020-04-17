@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    models:
+      discovery:
+    attributes:
+      discovery:
+        content: 内容

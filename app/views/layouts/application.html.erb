@@ -7,14 +7,19 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <title><%= full_title(yield(:title)) %></title>
   </head>
 
   <body>
     <header>
       <div class="logo-title">
-          <span>TOEIC Hiroba</span>
+          <span>TOEICer Hiroba</span>
       </div>
     </header>
+    <% flash.each do |kye, value| %>
+      <%= content_tag(:div, value, class:"flash kye") %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

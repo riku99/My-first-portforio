@@ -1,0 +1,22 @@
+<% provide(:title, 'Create') %>
+
+<div class="new-wrapper">
+    <% if @discovery.errors.any? %>
+      <%= @discovery.errors.full_messages.each do |msg| %>
+        <div class="errors">
+          <%= msg %>
+        </div>
+        <% end %>
+      <% end %>
+  <div class="discovery-new-contaienr">
+    <div class="error_explanation">
+    </div>
+    <div class="discovery-form">
+      <%= form_for(@discovery) do |f| %>
+        <%= f.label :content, "Post anything you notice!", class: "content-form-label" %>
+        <%= f.text_area :content, class: "content-form", placeholder: "Please write it here" %>
+        <%= f.submit "Post", class: "create-link" %>
+      <% end %>
+    </div>
+  </div>
+</div>

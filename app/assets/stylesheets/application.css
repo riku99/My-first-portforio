@@ -1,3 +1,12 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
 header {
   height: 50px;
   width: 100%;
@@ -10,6 +19,28 @@ header {
   z-index: 10;
 }
 
+.d-wapper {
+  padding-top: 60px;
+  background-color: rgb(227, 227, 227);
+}
+
+.discovery-index-wrapper {
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: rgb(227, 227, 227);
+}
+
+footer {
+  height: 50px;
+  width: 100%;
+  background-color: white;
+  border-top: 1px solid #bfbfc6;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+}
+
 .main-wrapper {
   width: 100%;
 }
@@ -18,6 +49,7 @@ header {
   line-height: 50px;
   font-size: 30px;
   font-family: 'Chalkboard SE',sans-serif;
+  color: rgba(255, 191, 0, 0.8);
 }
 
 .home-image {
@@ -53,4 +85,132 @@ header {
 
 .signup-link {
   margin-right: 50px;
+}
+
+.discovery {
+  width: 600px;
+  height: 300px;
+  margin: 0 auto;
+  margin-top: 20px;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.discovery-profile {
+  height: 20%;
+  background-color: white;
+}
+
+#content-link {
+  text-decoration: none;
+  color: black;
+}
+
+.discovery-content {
+  height: 80%;
+  background-color: white;
+  font-size: 20px;
+  overflow-wrap: break-word;
+  position: relative;
+}
+
+.new-link {
+  background-color: rgba(255, 191, 0, 0.8);
+  color: white;
+  padding: 20px;
+  text-decoration: none;
+  border-radius: 40px;
+  position: fixed;
+  bottom: 7%;
+  right: 10%;
+  z-index: 10;
+}
+
+.new-wrapper {
+  width: 100%;
+  background-color: rgb(227, 227, 227);
+  height: 100%;
+  position: relative;
+}
+
+.discovery-new-contaienr {
+  height: 60%;
+  width: 50%;
+  background-color: white;
+  /* 要素を真ん中に指定 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.content-form {
+  width: 90%;
+  margin: 0 auto;
+  height: 300px;
+  margin-top: 25px;
+  border:solid 0px;    /* フォームの枠線を消す */
+  font-size: 20px;
+  display: block;
+}
+
+.content-form-label {
+  font-size: 30px;
+  font-family: 'Skia-Regular_Black';
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.create-link {
+  background-color: rgba(255, 191, 0, 0.8);
+  padding: 20px;
+  border-radius: 50%;
+  float: right;
+  margin-right: 30px;
+  margin-top: 10px;
+  font-size: 20px;
+  color: white;
+}
+
+.flash {
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 174, 0, 0.51);
+  width: 30%;
+  padding: 7px 0;
+  text-align: center;
+  z-index: 9;
+  color: white;
+  border-radius: 20px;
+}
+
+.errors {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 174, 0, 0.51);
+  width: 60%;
+  padding: 7px 0;
+  text-align: center;
+  z-index: 9;
+  color: white;
+}
+
+.create-date {
+  color: rgba(141, 142, 139, 0.6);
+  font-size: 15px;
+  position: absolute;
+  top: 210px;
+  left: 540px;
+}
+
+.discovery-show-wrapper {
+  background-color: rgb(227, 227, 227);
+  height: 100%;
+  padding-top: 60px;
 }
