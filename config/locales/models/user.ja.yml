@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    models:
+      user:
+    attributes:
+      user:
+        acount_id: User_id

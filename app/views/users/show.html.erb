@@ -1,0 +1,37 @@
+<% provide(:title, "Show-profile") %>
+<div class="user-show-wrapper">
+  <div class="user-show-container">
+    <div class="user-profile">
+      <div class="user-profile-main">
+      <div class="user-id"><%= @user.acount_id %></div>
+
+      <% if @user.image.attached? %>
+      <div class="user-image">
+        <%= image_tag @user.image.variant(resize_to_fill: [120, 120]), class: "image" %>
+      </div>
+      <% else %>
+      <div class="user-image">
+        <%= image_tag 'no-user.png', :size => '120x120', class: "no-image" %>
+      </div>
+      <% end %>
+      
+      <div class="user-score">
+        <p class="label-score">score</p>
+        <%= @user.score %>
+      </div>
+      <div class="user-target-score">
+        <p class="label-target-score">target score</p>
+        <%= @user.target_score %>
+      </div>
+      <div class="user-name"><%= @user.name %></div>
+      <% if @user.introduce %>
+      <div class="user-introduce">
+        <%= safe_join(@user.introduce.split("\n"), tag(:br)) %>
+      </div>
+      <% end %>
+      <%= link_to "プロフィールを編集", edit_user_path(@user), {class: "edit-profile-link"} %>
+      </div>
+    </div>
+  </div>
+</div>
+<footer></footer>

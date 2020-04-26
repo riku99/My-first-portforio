@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'users/new'
   root 'homepages#home'
 
   resources :discoveries
+  resources :users
 end

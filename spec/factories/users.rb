@@ -3,10 +3,12 @@ FactoryBot.define do
     name { "riku" }
     email { "riku@example.com" }
     acount_id { "riku" }
-    score { 1 }
-    target_score { 1 }
+    score { 770 }
+    target_score { 900 }
     password { "foobar" }
     password_confirmation { "foobar" }
+    introduce { "hello" }
+    image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/images/test.jpg')) }
 
     trait :duplicate_acount_id_user do
       name { "riku2" }

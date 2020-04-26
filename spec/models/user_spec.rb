@@ -71,4 +71,9 @@ RSpec.describe User, type: :model do
     expect(user).to_not be_valid
   end
 
+  it "introduceが141文字以上なら無効であること" do
+    user.introduce = "a" * 141
+    expect(user).to_not be_valid
+  end
+
 end

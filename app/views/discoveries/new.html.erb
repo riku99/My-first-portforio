@@ -1,13 +1,7 @@
 <% provide(:title, 'Create') %>
 
 <div class="new-wrapper">
-    <% if @discovery.errors.any? %>
-      <%= @discovery.errors.full_messages.each do |msg| %>
-        <div class="errors">
-          <%= msg %>
-        </div>
-        <% end %>
-      <% end %>
+    <%= render 'shared/error_messages', object: @discovery %>
   <div class="discovery-new-contaienr">
     <div class="error_explanation">
     </div>

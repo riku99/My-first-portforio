@@ -14,7 +14,7 @@ require 'rails_helper'
           expect(page).to have_content "投稿しました"
         end
 
-        it "Discoveryのカウントが増える", focus: true do
+        it "Discoveryのカウントが増える" do
           expect {
             create_one_discovery(discovery)
           }.to change(Discovery, :count).by(1)
