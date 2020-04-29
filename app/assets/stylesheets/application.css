@@ -1,3 +1,9 @@
+/* これらは他のcssファルを読み込む働きをするので消さない */
+/*
+ *= require_self
+ *= require_tree .
+ */
+
 html {
   height: 100%;
 }
@@ -7,13 +13,16 @@ body {
   margin: 0;
 }
 
+a {
+  text-decoration: none; /*リンク下の線を消す*/
+}
+
 header {
   height: 50px;
   width: 100%;
   background-color: white;
   padding-bottom: 10px;
   border-bottom: 1px solid #bfbfc6;
-  text-align: center;
   position: fixed;
   top: 0;
   z-index: 10;
@@ -51,9 +60,27 @@ footer {
 }
 
 .logo-title {
-  line-height: 50px;
   font-size: 30px;
   font-family: 'Chalkboard SE',sans-serif;
+  color: rgba(255, 191, 0, 0.8);
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  transform: translate(-50%, -50%); /* この要素の半分の大きさ分位置を戻す */
+}
+
+.header-link-box {
+  float: right;
+  margin-right: 3%;
+}
+
+li {
+  list-style: none;
+  float: left;
+  margin-right: 25px;
+}
+
+.header-link {
   color: rgba(255, 191, 0, 0.8);
 }
 
@@ -179,7 +206,7 @@ footer {
   color: white;
 }
 
-.flash {
+.info {
   position: fixed;
   bottom: 60px;
   left: 50%;
@@ -191,6 +218,17 @@ footer {
   z-index: 9;
   color: white;
   border-radius: 20px;
+}
+
+.danger {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 7px 0;
+  text-align: center;
+  z-index: 9;
+  color: red;
 }
 
 .errors {

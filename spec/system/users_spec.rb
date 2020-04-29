@@ -6,6 +6,10 @@ describe "Users", type: :system do
     context "有効なユーザーの場合" do
       it "作成される" do
         visit new_user_path
+        within '.header-link-box' do
+          expect(page).to have_content "ログイン"
+          expect(page).to_not have_content "ログアウト"
+        end
         expect {
           fill_in "Name", with: user.name
           fill_in "User_id", with: user.acount_id
@@ -13,15 +17,24 @@ describe "Users", type: :system do
           fill_in "Password", with: user.password
           fill_in "Confirmation", with: user.password_confirmation
           click_button "Signup"
-          expect(page).to have_content "アカウントを登録しました"
         }.to change(User, :count).by(1)
+        expect(page).to have_content "アカウントを登録しました"
+        user = User.last
+        expect(current_path).to eq user_path(user)
+        # header-link-boxの中の内容が変わっているかテスト
+        within '.header-link-box' do
+          expect(page).to_not have_content "ログイン"
+          expect(page).to have_content "ログアウト"
+        end
       end
-
     end
     context "無効なユーザーの場合" do
       it "作成されない" do
-
         visit new_user_path
+        within '.header-link-box' do
+          expect(page).to have_content "ログイン"
+          expect(page).to_not have_content "ログアウト"
+        end
         expect {
           fill_in "Name", with: user.name
           fill_in "User_id", with: user.acount_id
@@ -31,6 +44,10 @@ describe "Users", type: :system do
           click_button "Signup"
         }.to_not change(User, :count)
         expect(page).to have_css '.errors'
+        within '.header-link-box' do
+          expect(page).to have_content 'ログイン'
+          expect(page).to_not have_content 'ログアウト'
+      end
       end
     end
   end

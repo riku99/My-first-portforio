@@ -16,9 +16,18 @@
       <div class="logo-title">
           <span>TOEICer Hiroba</span>
       </div>
+      <div class="header-link-box">
+        <ul>
+          <% if logged_in? %>
+          <li><%= link_to "ログアウト", logout_path, method: :delete, class: "header-link h-logout" %></li>
+          <% else %>
+          <li><%= link_to "ログイン", login_path, class: "header-link h-login" %></li>
+          <% end %>
+        </ul>
+      </div>
     </header>
-    <% flash.each do |kye, value| %>
-      <%= content_tag(:div, value, class:"flash kye") %>
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
     <%= yield %>
     <!-- デバック情報の追加 -->

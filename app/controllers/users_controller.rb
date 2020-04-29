@@ -6,8 +6,9 @@ class UsersController < ApplicationController
   def create
      @user = User.new(user_params)
       if @user.save
+        log_in @user
         flash[:info] = "アカウントを登録しました"
-        redirect_to discoveries_path
+        redirect_to user_path(@user)
       else
         render 'new'
       end

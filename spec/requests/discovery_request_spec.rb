@@ -13,5 +13,4 @@ RSpec.describe "Discoveries", type: :request do
       assert_select "title", "Create | #{@base_title}"
     end
   end
-
 end
