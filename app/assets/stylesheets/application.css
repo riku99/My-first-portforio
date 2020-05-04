@@ -426,7 +426,6 @@ li {
 
 .user-edit-image {
   width: 100%;
-  height: 200px;
   padding-top: 70px;
   border-bottom: solid 1px rgb(241, 241, 241);
 }
@@ -445,6 +444,15 @@ li {
   display: block;
   margin-top: 7px;
   text-align: center;
+  color: rgb(0, 133, 255);
+}
+
+.image-delete {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.image-delete-link {
   color: rgb(0, 133, 255);
 }
 

@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
+gem 'show_me_the_cookies'
+
 gem 'bcrypt'    # ハッシュ関数
 
 gem 'rails-i18n' #エラーメッセージの日本語化

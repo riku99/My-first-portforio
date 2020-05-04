@@ -76,4 +76,8 @@ RSpec.describe User, type: :model do
     expect(user).to_not be_valid
   end
 
+  it "remember_digestがnilのユーザーに対してauthnticated?が行われないこと" do
+    user.save
+    expect(user.authenticated?(nil)).to be_falsey
+  end
 end

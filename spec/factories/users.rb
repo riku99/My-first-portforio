@@ -9,6 +9,7 @@ FactoryBot.define do
     password_confirmation { "foobar" }
     introduce { "hello" }
     image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/images/test.jpg')) }
+    remember_digest {nil}
 
     trait :duplicate_acount_id_user do
       name { "riku2" }

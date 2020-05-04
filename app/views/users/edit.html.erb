@@ -15,11 +15,16 @@
           <%= image_tag 'no-user.png', :size => '120x120', class: "no-image" %>
         </div>
         <% end %>
-        
+
         <div class="field">
           <%= f.label :image, "プロフィール画像を選択", class: "form-control" %>
           <%= f.file_field :image, class: "none-form" %>
-        </div>
+      </div>
+      <div class="image-delete">
+        <% if @user.image.attached? %>
+        <%= link_to "プロフィール画像を削除", imgd_path(@user.id), method: :delete, data: {confirm: "削除しますか？"}, class: "image-delete-link" %>
+        <% end %>
+      </div>
       </div>
       <div class="edit-name">
         <%= f.label :name, class: "edit-label first-edit-label" %>
@@ -43,7 +48,6 @@
       </div>
       <div><%= f.submit "Update", class: "edit-profile-button" %></div>
       <% end %>
-    </div>
   </div>
 </div>
 <footer></footer>
