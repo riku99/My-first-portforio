@@ -397,6 +397,10 @@ li {
   margin-top: 10px;
 }
 
+.user-delete {
+  text-align: center;
+}
+
 .edit-profile-link {
   display: block;
   text-align: center;

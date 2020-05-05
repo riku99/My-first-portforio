@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
   let(:user) { FactoryBot.build(:user) }
+  let(:second_user) { FactoryBot.build(:user, :second_user) }
 
   before do
     @base_title = "TOEICer Hiroba"
@@ -26,29 +27,35 @@ RSpec.describe "Users", type: :request do
 
   describe "GET edit_user_path" do
     it "正しいレスポンスを返す" do
-      user.save
+      log_in_as
       get edit_user_path(user)
       expect(response).to have_http_status(:success)
       assert_select "title", "Edit-profile | #{@base_title}"
     end
   end
 
-  describe "PATCH user_path" do
-    context "有効なユーザの場合" do
-      it "showにリダイレクトされること" do
-        user.save
-        patch user_path(user), params: {user: FactoryBot.attributes_for(:user) }
-        expect(response).to redirect_to user
-      end
-    end
-  end
-
   describe "GET user_path" do
     it "正しいレスポンスを返す" do
-      user.save
+      log_in_as
       get user_path(user)
       expect(response).to have_http_status(:success)
       assert_select "title", "Show-profile | #{@base_title}"
     end
+  end
+
+  it "admin属性が変更できないこと" do
+    second_user.save
+    post login_path, params: { session: FactoryBot.attributes_for(:user, :second_user) }
+    patch user_path(second_user), params: { user: FactoryBot.attributes_for(:user, :second_user, admin: true)}
+    expect(second_user.admin?).to_not be_truthy
+  end
+
+  it "admin属性がfalseであるユーザーはユーザーを削除できないこと" do
+    user.save
+    second_user.save
+    log_in_as_second_user
+    expect {
+      delete user_path(user)
+    }.to_not change(User, :count)
   end
 end

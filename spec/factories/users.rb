@@ -10,6 +10,21 @@ FactoryBot.define do
     introduce { "hello" }
     image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/images/test.jpg')) }
     remember_digest {nil}
+    admin { true }
+
+    trait :second_user do
+      name { "riku" }
+      email { "rikusecond@example.com" }
+      acount_id { "secondriku" }
+      score { 770 }
+      target_score { 900 }
+      password { "foobar" }
+      password_confirmation { "foobar" }
+      introduce { "hello2" }
+      image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/images/test.jpg')) }
+      remember_digest {nil}
+      admin { nil }
+    end
 
     trait :duplicate_acount_id_user do
       name { "riku2" }

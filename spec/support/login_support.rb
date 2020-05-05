@@ -10,6 +10,15 @@ module LoginUser
     click_button "Login"
   end
 
+  def log_in_as
+    user.save
+    post login_path, params: { session: FactoryBot.attributes_for(:user) }
+  end
+
+  def log_in_as_second_user
+    post login_path, params: { session: FactoryBot.attributes_for(:user, :second_user) }
+  end
+
   RSpec.configure do |config|
     config.include LoginUser
   end

@@ -44,4 +44,15 @@ module SessionsHelper
     cookies.delete(:user_id)
     cookies.delete(:remember_token)
   end
+
+  # リクエストしたURLをsessionに保存
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
+  end
+
+  # URLがセッションに保存されていたらそのURLに、それ以外は引数のpathにリダイレクト
+  def redirect_requested_url(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
 end

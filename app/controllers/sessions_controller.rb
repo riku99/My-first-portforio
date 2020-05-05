@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in user
       remember user
-      redirect_to user
+      redirect_requested_url user
     else
       # flashは次のリクエストのまで残る。.nowは次のリクエストがあった時点で消える
       flash.now[:danger] = "User_idまたはpasswordが正しくありません"

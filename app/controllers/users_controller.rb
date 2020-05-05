@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  before_action :user_logged_in?, only: [:edit, :update, :imgd, :destroy]
+  before_action :correct_user?, only: [:edit, :update, :imgd]
+  before_action :user_admin?, only: [:destroy]
+
   def new
     @user = User.new
   end
@@ -19,17 +23,22 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    # before_actionでインスタンス変数を作るのでここでは作らない
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)    # update_attributesと同じ。これは6.1でなくなるためupdateを使う
       flash[:info] = "更新しました"
       redirect_to @user
     else
       render "edit"
     end
+  end
+
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to root_path
   end
 
   def imgd
@@ -43,6 +52,30 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :acount_id, :email, :password, :password_confirmation, :image, :introduce,
                                  :score, :target_score)
+  end
+
+  def user_logged_in?
+    unless logged_in?
+      store_location
+      flash[:danger] = "ログインしてください"
+      redirect_to login_url
+    end
+  end
+
+  def correct_user?
+    @user = User.find(params[:id])
+    unless @user == @current_user
+      flash[:danger] = "他のユーザーは編集できません"
+      redirect_back(fallback_location: root_path)
+    end
+  end
+
+  def user_admin?
+    user = User.find(params[:id])
+    unless current_user.admin?
+      flash[:danger] = "削除できません"
+      redirect_to user_path(user)
+    end
   end
 
 end

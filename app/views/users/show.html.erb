@@ -29,7 +29,14 @@
         <%= safe_join(@user.introduce.split("\n"), tag(:br)) %>
       </div>
       <% end %>
-      <%= link_to "プロフィールを編集", edit_user_path(@user), {class: "edit-profile-link"} %>
+      <% if @user == current_user %>
+        <%= link_to "プロフィールを編集", edit_user_path(@user), {class: "edit-profile-link"} %>
+      <% end %>
+      <div class="user-delete">
+        <% if current_user && current_user.admin? && current_user != @user %>
+          <%= link_to "ユーザーを削除", user_path(@user.id), method: :delete, data: {confirm: "削除しますか？"} %>
+        <% end %>
+      </div>
       </div>
     </div>
   </div>

@@ -18,7 +18,15 @@ require 'rails_helper'
       expect(page).to have_content "ログアウト"
     end
 
-    it "cookieがない場合はログイン状態になっていない" do
+    it "ログインを要求され、ログイン後に表示させたかったページになる" do
+      user.save
+      visit edit_user_path(user)
+      expect(current_path).to eq login_path
+      test_log_in
+      expect(current_path).to eq edit_user_path(user)
+    end
+
+    it "session用cookieがない場合はログイン状態になっていない" do
       visit root_path
       expect(page).to have_content "ログイン"
     end
@@ -50,7 +58,7 @@ require 'rails_helper'
       expect(page).to have_content "ログイン"
     end
 
-    it "別タブでログアウトをクリックした時、エラーにならない" do
+    it "２つタブでログインしていて、片方をログアウトさせた後もう片方をログアウトさせてもエラーにならない" do
       user.save
       test_log_in
 
