@@ -1,18 +1,23 @@
-  <div class="d-wrapper">
-  <% @discoveries.each do |d| %>
+  <% provide(:title, "discovery一覧") %>
+
   <div class="discovery-index-wrapper">
-    <div class="discovery">
-      <div class="discovery-profile"></div>
-      <%= link_to(discovery_path(d), id: "content-link") do %>
-      <div class="discovery-content">
-        <%= safe_join(d.content.split("\n"), tag(:br)) %>
-        <div class="create-date"><%= l d.created_at %></div>
+    <div class="discovery-index-container">
+      <div class="discovery-index">
+        <% @discoveries.each do |d| %>
+          <div class="discovery">
+            <div class="discovery-profile"></div>
+            <%= link_to(discovery_path(d), id: "content-link") do %>
+            <div class="discovery-index-content">
+              <%= safe_join(d.content.split("\n"), tag(:br)) %>
+              <div class="create-date">
+                <%= l d.created_at %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        <% end %>
+        <%= link_to "投稿する", new_discovery_path, class: "discovery-new-link" %>
       </div>
-      <% end %>
-      </div>
-      <% end %>
     </div>
-    </div>
-    <footer>
-      <%= link_to "気づきをのせる", new_discovery_path, {class: "new-link"} %>
-    </footer>
+  </div>
+  <footer></footer>

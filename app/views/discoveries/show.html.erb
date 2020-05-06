@@ -1,12 +1,18 @@
+<% provide(:title, "詳細") %>
+
 <div class="discovery-show-wrapper">
   <div class="discovery-show-container">
-    <div class="discovery">
-      <div class="discovery-profile"></div>
-      <div class="discovery-content">
-        <%= @discovery.content %>
-        <div class="create-date"><%= l @discovery.created_at %></div>
+    <div class="discovery-show">
+      <div class="disc">
+        <div class="discovery-profile"></div>
+        <div class="discovery-show-content">
+          <%= safe_join(@discovery.content.split("\n"), tag(:br)) %>
+        </div>
+        <div class="create-date">
+          <%= l @discovery.created_at %>
+        </div>
       </div>
     </div>
   </div>
-  <footer></footer>
 </div>
+<footer></footer>

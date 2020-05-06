@@ -1,1 +1,157 @@
+.discovery-index-wrapper {
+  height: 100vh;
+  background-color: rgb(227, 227, 227);
+}
 
+.discovery-index-container {
+  width: 500px;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.discovery-index {
+  background-color: white;
+  width: 500px;
+  height: 100vh;
+  margin: 0 auto;
+  margin-top: 60px;
+  overflow: scroll;
+}
+
+.discovery {
+  width: 420px;
+  margin: 0 auto;
+  margin-top: 20px;
+  border-bottom: solid 1px rgb(219, 219, 219);
+  padding-bottom: 20px;
+}
+
+.discovery-profile {
+  height: 60px;
+}
+
+.discovery-index-content {
+  padding-left: 20px
+}
+
+#content-link {
+  color: black;
+}
+
+.create-date {
+  margin-top: 20px;
+  margin-left: 320px;
+  color: rgba(141, 142, 139, 0.6);
+}
+
+.new-wrapper {
+  width: 100%;
+  background-color: rgb(227, 227, 227);
+  height: 100%;
+  position: relative;
+}
+
+.discovery-new-contaienr {
+  height: 60%;
+  width: 50%;
+  background-color: white;
+  /* 要素を真ん中に指定 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.discovery-show-wrapper {
+  height: 100vh;
+  background-color: rgb(227, 227, 227);
+}
+
+.discovery-show-container {
+  width: 500px;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.discovery-show {
+  background-color: white;
+  width: 500px;
+  height: 100vh;
+  margin: 0 auto;
+  overflow: scroll;
+}
+
+.disc {
+  width: 420px;
+  border-bottom: solid 1px rgb(219, 219, 219);
+  padding-bottom: 20px;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.user-new-wrapper {
+  background-color: rgb(227, 227, 227);
+  height: 100%;
+}
+
+.user-new-container {
+  height: 100%;
+  background-color: rgb(227, 227, 227);
+  width: 50%;
+  margin: 0 auto;
+}
+
+.user-new-form {
+  background-color: white;
+  width: 450px;
+  height: 500px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.discovery-new-link {
+  position: fixed;
+  top: 660px;
+  margin-left: 380px;
+  color: white;
+  background-color: rgba(255, 191, 0, 0.8);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 70px;
+}
+
+.content-form {
+  width: 90%;
+  margin: 0 auto;
+  height: 300px;
+  margin-top: 40px;
+  border:solid 0px;    /* フォームの枠線を消す */
+  font-size: 20px;
+  display: block;
+}
+
+.content-form-label {
+  display: none
+}
+
+.create-link {
+  background-color: rgba(255, 191, 0, 0.8);
+  padding: 20px;
+  border-radius: 50%;
+  float: right;
+  margin-right: 30px;
+  margin-top: 10px;
+  font-size: 20px;
+  color: white;
+}

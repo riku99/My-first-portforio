@@ -8,12 +8,8 @@ RSpec.describe User, type: :model do
   let(:user_name_over) { FactoryBot.build(:user, :name_over_word) }
   let(:user_email_over) { FactoryBot.build(:user, :email_over_word) }
 
-  it "name,email,acount_id,passwordがあれば有効であること" do
+  it "email,acount_id,passwordがあれば有効であること" do
     expect(user).to be_valid
-  end
-
-  it "nameがなければ無効であること" do
-    expect(user_name_nil).to_not be_valid
   end
 
   it "emailがなければ無効であること" do

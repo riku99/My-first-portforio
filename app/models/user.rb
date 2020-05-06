@@ -2,11 +2,11 @@ class User < ApplicationRecord
   # DBには保存されないがUserオブジェクトから呼び出せる仮想的な属性を設定
   attr_accessor :remember_token
   before_save { self.email = self.email.downcase }
-  validates :name, presence: true, length: { maximum: 25 }
+  validates :name, length: { maximum: 25 }
+  validates :acount_id, presence: true, length: { maximum: 30 }, uniqueness: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }   # 大文字小文字を区別せずにuniqunessをtrueにする
-  validates :acount_id, presence: true, length: { maximum: 30 }, uniqueness: true
   validates :introduce, length: { maximum: 140 }
 
   has_secure_password

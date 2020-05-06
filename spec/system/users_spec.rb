@@ -10,12 +10,11 @@ describe "Users", type: :system do
       expect(page).to_not have_content "ログアウト"
     end
     expect {
-      fill_in "Name", with: user.name
       fill_in "User_id", with: user.acount_id
       fill_in "Email", with: user.email
       fill_in "Password", with: user.password
       fill_in "Confirmation", with: user.password_confirmation
-      click_button "Signup"
+      click_button "登録する"
     }.to change(User, :count).by(1)
     expect(page).to have_content "アカウントを登録しました"
     user = User.last
@@ -34,12 +33,11 @@ describe "Users", type: :system do
       expect(page).to_not have_content "ログアウト"
     end
     expect {
-      fill_in "Name", with: user.name
       fill_in "User_id", with: user.acount_id
       fill_in "Email", with: nil
       fill_in "Password", with: user.password
       fill_in "Confirmation", with: user.password_confirmation
-      click_button "Signup"
+      click_button "登録する"
     }.to_not change(User, :count)
     expect(page).to have_css '.errors'
     within '.header-link-box' do
@@ -104,8 +102,8 @@ describe "Users", type: :system do
     test_log_in
     visit user_path(user)
     click_link "プロフィールを編集"
-    fill_in "Name", with: ""
-    fill_in "User_id", with: user.acount_id
+    fill_in "Name", with: user.name
+    fill_in "User_id", with: ""
     fill_in "Score", with: user.score
     fill_in "Target score", with: user.target_score
     fill_in "Introduce", with: user.introduce

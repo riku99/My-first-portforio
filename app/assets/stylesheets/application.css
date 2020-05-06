@@ -38,13 +38,6 @@ header {
   background-color: rgb(227, 227, 227);
 }
 
-.discovery-index-wrapper {
-  width: 100%;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  background-color: rgb(227, 227, 227);
-}
-
 footer {
   height: 50px;
   width: 100%;
@@ -119,93 +112,6 @@ li {
   margin-right: 50px;
 }
 
-.discovery {
-  width: 600px;
-  height: 300px;
-  margin: 0 auto;
-  margin-top: 20px;
-  border-radius: 4px;
-  background-color: white;
-}
-
-.discovery-profile {
-  height: 20%;
-  background-color: white;
-}
-
-#content-link {
-  text-decoration: none;
-  color: black;
-}
-
-.discovery-content {
-  height: 80%;
-  background-color: white;
-  font-size: 20px;
-  overflow-wrap: break-word;
-  position: relative;
-}
-
-.new-link {
-  background-color: rgba(255, 191, 0, 0.8);
-  color: white;
-  padding: 20px;
-  text-decoration: none;
-  border-radius: 40px;
-  position: fixed;
-  bottom: 7%;
-  right: 10%;
-  z-index: 10;
-}
-
-.new-wrapper {
-  width: 100%;
-  background-color: rgb(227, 227, 227);
-  height: 100%;
-  position: relative;
-}
-
-.discovery-new-contaienr {
-  height: 60%;
-  width: 50%;
-  background-color: white;
-  /* 要素を真ん中に指定 */
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-}
-
-.content-form {
-  width: 90%;
-  margin: 0 auto;
-  height: 300px;
-  margin-top: 25px;
-  border:solid 0px;    /* フォームの枠線を消す */
-  font-size: 20px;
-  display: block;
-}
-
-.content-form-label {
-  font-size: 30px;
-  font-family: 'Skia-Regular_Black';
-  display: inline-block;
-  margin-top: 20px;
-}
-
-.create-link {
-  background-color: rgba(255, 191, 0, 0.8);
-  padding: 20px;
-  border-radius: 50%;
-  float: right;
-  margin-right: 30px;
-  margin-top: 10px;
-  font-size: 20px;
-  color: white;
-}
-
 .info {
   position: fixed;
   bottom: 60px;
@@ -242,47 +148,8 @@ li {
   color: red;
 }
 
-.create-date {
-  color: rgba(141, 142, 139, 0.6);
-  font-size: 15px;
-  position: absolute;
-  top: 210px;
-  left: 540px;
-}
-
-.discovery-show-wrapper {
-  background-color: rgb(227, 227, 227);
-  height: 100%;
-  padding-top: 60px;
-}
-
-.user-new-wrapper {
-  background-color: rgb(227, 227, 227);
-  height: 100%;
-}
-
-.user-new-container {
-  height: 100%;
-  background-color: rgb(227, 227, 227);
-  width: 50%;
-  margin: 0 auto;
-}
-
-.user-new-form {
-  background-color: white;
-  width: 450px;
-  height: 500px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-}
-
 .signup-form {
   width: 90%;
-  height: 90%;
   position: absolute;
   top: 0;
   left: 0;
@@ -293,6 +160,7 @@ li {
 
 .signup {
   margin-top: 35px;
+  margin-left: 40px;
 }
 
 .signup-label {
@@ -301,225 +169,20 @@ li {
 }
 
 .signup-field {
-  width: 100%;
-  height: 25px;
-  background-color: rgba(97, 97, 97, 0.02);
-}
-
-.signup-button {
-  width: 70%;
-  margin: 0 auto;
-  display: block;
-  margin-top: 10px;
-  font-size: 20px;
-  background-color: rgba(255, 191, 0, 0.8);
-  color: white;
-  font-family: 'Chalkboard SE';
-}
-
-.user-show-wrapper {
-  height: 100%;
-  background-color: rgb(227, 227, 227);
-}
-
-.user-show-container {
-  background-color: rgb(227, 227, 227);
-  width: 500px;
-  height: 100%;
-  margin: 0 auto;
-}
-
-.user-profile {
-  background-color: white;
-  width: 100%;
-  height: 94vh;
-  padding-bottom: 65px;
-  overflow: scroll;
-}
-
-.user-profile-main {
-  border-bottom: solid 1px rgb(241, 241, 241);
-  padding-bottom: 20px;
-}
-
-.user-id {
-  padding-top: 80px;
-  text-align: center;
-  font-weight: bold;
-}
-
-.user-image {
-  margin-top: 35px;
-  margin-left: 30px;
-  float: left;
-}
-
-.image {
-  border-radius: 50%;
-}
-
-.no-image {
-  border-radius: 50%;
-}
-
-.user-score {
-  float: left;
-  margin-top: 110px;
-  margin-left: 60px;
-  text-align: center;
-}
-
-.user-target-score {
-  float: left;
-  margin-top: 110px;
-  margin-left: 40px;
-  text-align: center;
-}
-
-.label-score {
-  font-weight: bold;
-}
-
-.label-target-score {
-  font-weight: bold;
-}
-
-.user-name {
-  padding-top: 15px;
-  margin-left: 20px;
-  font-weight: bold;
-  clear: left;
-}
-
-.user-introduce {
-  width: 90%;
-  margin: 0 auto;
-  margin-top: 10px;
-}
-
-.user-delete {
-  text-align: center;
-}
-
-.edit-profile-link {
-  display: block;
-  text-align: center;
-  margin-top: 35px;
-  text-decoration: none;
-  color: rgb(0, 133, 255);
-}
-
-.user-edit-wrapper {
-  height: 100vh;
-  background-color: rgb(227, 227, 227);
-}
-
-.user-edit-container {
-  background-color: rgb(227, 227, 227);
-  width: 500px;
-  height: 100vh;
-  margin: 0 auto;
-}
-
-.user-profile-edit {
-  background-color: white;
-  width: 100%;
-  height: 679px;
-  padding-bottom: 60px;
-}
-
-.user-edit-image {
-  width: 100%;
-  padding-top: 70px;
-  border-bottom: solid 1px rgb(241, 241, 241);
-}
-
-
-.edit-image-box {
-  margin-top: 30px;
-  text-align: center;
-}
-
-.none-form {
-  display: none;
-}
-
-.form-control {
-  display: block;
-  margin-top: 7px;
-  text-align: center;
-  color: rgb(0, 133, 255);
-}
-
-.image-delete {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.image-delete-link {
-  color: rgb(0, 133, 255);
-}
-
-.first-edit-label {
-  margin-left: 10px;
-  display: inline-block;
-  margin-top: 10px;
-}
-
-.edit-label {
-  display: inline-block;
-  margin-top: 30px;
-  margin-left: 10px;
-}
-
-.edit-field {
-  display: inline-block;
   border: none;
   border-top: solid 1px rgb(219, 219, 219);
   border-bottom: solid 1px rgb(219, 219, 219);
-  outline: 0; /* テキストボックスで入力中に出てくる青枠線を消す */
-  resize: none; /* text_areaのリサイズを消す */
-}
-
-.edit-name-field {
-  margin-left: 65px;
-  height: 30px;
+  margin-top: 10px;
   width: 300px;
+  height: 40px
 }
 
-.edit-acount-field {
-  margin-left: 54px;
-  height: 30px;
-  width: 300px;
-}
-
-.edit-score-field {
-  margin-left: 72px;
-  height: 30px;
-  border: solid 1px rgb(219, 219, 219);
-}
-
-.edit-target-field {
-  margin-left: 20px;
-  height: 30px;
-  border: solid 1px rgb(219, 219, 219);
-}
-
-.edit-introduce-field {
-  margin-left: 45px;
-  display: block;
-  float: right;
-  margin-top: 40px;
-  margin-right: 60px;
-  height: 70px;
-  width: 300px;
-}
-
-.edit-profile-button {
-  font-size: 20px;
+.signup-button {
   margin: 0 auto;
   display: block;
-  margin-top: 100px;
-  color: rgb(0, 133, 255);
-  border: none;
+  margin-top: 10px;
+  font-size: 15px;
+  background-color: rgba(255, 191, 0, 0.8);
+  color: white;
+  font-family: 'Chalkboard SE';
 }

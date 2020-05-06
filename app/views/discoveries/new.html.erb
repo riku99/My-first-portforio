@@ -7,8 +7,7 @@
     </div>
     <div class="discovery-form">
       <%= form_for(@discovery) do |f| %>
-        <%= f.label :content, "Post anything you notice!", class: "content-form-label" %>
-        <%= f.text_area :content, class: "content-form", placeholder: "Please write it here" %>
+        <%= f.text_area :content, class: "content-form", placeholder: "勉強して気づいたこと、発見したことをなんでも投稿しよう！" %>
         <%= f.submit "Post", class: "create-link" %>
       <% end %>
     </div>
