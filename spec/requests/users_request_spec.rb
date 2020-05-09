@@ -25,15 +25,6 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe "GET edit_user_path" do
-    it "正しいレスポンスを返す" do
-      log_in_as
-      get edit_user_path(user)
-      expect(response).to have_http_status(:success)
-      assert_select "title", "Edit-profile | #{@base_title}"
-    end
-  end
-
   describe "GET user_path" do
     it "正しいレスポンスを返す" do
       log_in_as

@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :user do
     name { "riku" }
-    email { "riku@example.com" }
-    acount_id { "riku" }
+    sequence(:email) { |n| "riku#{n}@example.com" }
+    sequence(:acount_id) { |n| "riku#{n}" }
     score { 770 }
     target_score { 900 }
     password { "foobar" }
@@ -29,7 +29,7 @@ FactoryBot.define do
     trait :duplicate_acount_id_user do
       name { "riku2" }
       email { "riku2@example.com" }
-      acount_id { "riku" }
+      acount_id { "wow" }
       score { 2 }
       target_score { 2 }
       password { "foobar" }

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Discovery, type: :model do
   describe "Discovery" do
     let(:discovery) { FactoryBot.create(:discovery) }
-    let(:discovery_two) { FactoryBot.create(:discovery, id: 2) }
+    let(:discovery_two) { FactoryBot.create(:discovery) }
 
     it "contentが入力されていれば有効であること" do
       # contentの入った状態でnew
@@ -30,6 +30,13 @@ RSpec.describe Discovery, type: :model do
       discovery_two
       expect(Discovery.count).to eq 2
       expect(Discovery.all.to_a).to eq [discovery_two, discovery]
+    end
+
+    it "ユーザーが削除された場合、関連したdiscoveryも削除される" do
+      discovery
+      expect {
+        discovery.user.destroy
+      }.to change(Discovery, :count).by(-1)
     end
   end
 end

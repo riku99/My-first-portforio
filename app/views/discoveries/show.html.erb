@@ -4,13 +4,36 @@
   <div class="discovery-show-container">
     <div class="discovery-show">
       <div class="disc">
-        <div class="discovery-profile"></div>
+        <%= link_to(user_path(@discovery.user), id: "discovery-profile-link") do %>
+        <% if @discovery.user.image.attached? %>
+        <div class="discovery-profile">
+          <%= image_tag @discovery.user.image.variant(resize_to_fill: [40, 40]), class: "image d-image" %>
+          <% if @discovery.user.name %>
+          <p class="discovery-profile-name">
+            <%= @discovery.user.name %>
+          </p>
+          <% end %>
+        </div>
+        <% else %>
+        <div class="discovery-profile">
+          <%= image_tag 'no-user.png', :size => '40x40', class: "no-image d-image" %>
+          <% if d.user.name %>
+          <p class="discovery-profile-name">
+            <%= d.user.name %>
+          </p>
+          <% end %>
+        </div>
+        <% end %>
+        <% end %>
         <div class="discovery-show-content">
           <%= safe_join(@discovery.content.split("\n"), tag(:br)) %>
         </div>
         <div class="create-date">
           <%= l @discovery.created_at %>
         </div>
+        <% if current_user == @discovery.user %>
+          <%= link_to "削除する", discovery_path(@discovery), method: :delete, data: {confirm: "削除しますか？"}, class: "dis-delete-link" %>
+        <% end %>
       </div>
     </div>
   </div>

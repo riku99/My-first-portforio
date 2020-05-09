@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  # このモデルのidを外部キーとして抱えるクラス(discovery)が存在し、そのレコードが複数登録可能であることを表す
+  has_many :discoveries, dependent: :destroy
+
   # DBには保存されないがUserオブジェクトから呼び出せる仮想的な属性を設定
   attr_accessor :remember_token
   before_save { self.email = self.email.downcase }

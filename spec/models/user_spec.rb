@@ -58,6 +58,7 @@ RSpec.describe User, type: :model do
   end
 
   it "acount_idは一意でなければ無効であること" do
+    user.acount_id = "wow"
     user.save
     expect(duplicate_acount_id_user).to_not be_valid
   end

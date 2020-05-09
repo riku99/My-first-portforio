@@ -3,6 +3,11 @@ module LoginUser
     !session[:user_id].nil?
   end
 
+  def session_log_in(user)
+    @request = user
+    session[:user_id] = user.id
+  end
+
   def test_log_in
     visit login_path
     fill_in "User_id", with: user.acount_id

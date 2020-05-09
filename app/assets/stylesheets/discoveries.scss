@@ -26,12 +26,25 @@
   padding-bottom: 20px;
 }
 
+.d-image {
+  margin-top: 10px;
+  float: left;
+}
+
+.discovery-profile-name {
+  float: left;
+  margin-left: 20px;
+  font-weight: bold;
+  color: black;
+}
+
 .discovery-profile {
   height: 60px;
 }
 
 .discovery-index-content {
-  padding-left: 20px
+  padding-left: 20px;
+  padding-top: 10px;
 }
 
 #content-link {
@@ -92,6 +105,16 @@
   left: 0;
   right: 0;
   margin: 0 auto;
+}
+
+.discovery-show-content {
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+.dis-delete-link {
+  float: right;
+  margin-right: 38px;
 }
 
 .user-new-wrapper {
