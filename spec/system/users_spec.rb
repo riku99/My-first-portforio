@@ -53,8 +53,6 @@ describe "Users", type: :system do
     visit user_path(user)
     expect(page).to have_content user.name
     expect(page).to have_content user.acount_id
-    expect(page).to have_content user.score
-    expect(page).to have_content user.target_score
     expect(page).to have_css '.no-image'
   end
 
@@ -130,5 +128,82 @@ describe "Users", type: :system do
     visit edit_user_path(second_user)
     expect(current_path).to eq root_path
     expect(page).to have_content "他のユーザーは編集できません"
+  end
+
+  it "showページでユーザーをフォローしていない場合はフォローボタンが表示され、フォローできること" do
+    user.save
+    second_user.save
+    test_log_in
+    visit user_path(second_user)
+    expect {
+      click_button "フォローする"
+      expect(current_path).to eq user_path(second_user)
+    }.to change(Relationship, :count).by(1)
+    expect(user.following?(second_user)).to be_truthy
+  end
+
+  it "showページでユーザーをフォローしている場合はフォロー中ボタンが表示され、フォロー解除できること" do
+    user.save
+    second_user.save
+    test_log_in
+    user.follow(second_user)
+    visit user_path(second_user)
+    expect {
+      click_button "フォロー中"
+      expect(current_path).to eq user_path(second_user)
+    }.to change(Relationship, :count).by(-1)
+    expect(user.following?(second_user)).to_not be_truthy
+  end
+
+  it "フォロー中一覧ページでフォロー中のユーザーが表示されていること" do
+    user.save
+    second_user.save
+    test_log_in
+    user.follow(second_user)
+    visit user_path(user)
+    click_link "following-count"
+    expect(page).to have_selector "img[src$='test.jpg']"
+    expect(page).to have_content second_user.name
+    expect(page).to have_content second_user.acount_id
+  end
+
+  it "ログインしていなければfollowingページを表示できず、ログイン画面にリダイレクトされること" do
+    user.save
+    second_user.save
+    visit user_path(user)
+    click_link "following-count"
+    visit current_path    # リロードする
+    expect(current_path).to eq login_path
+  end
+
+  it "フォロー一覧ページでフォローしてないユーザーをフォローでき、ページを移動しないこと" do
+    user.save
+    second_user.save
+    third_user = FactoryBot.create(:user)
+    test_log_in
+    second_user.follow(third_user)
+    visit user_path(second_user)
+    click_link "following-count"
+    expect {
+      click_button "フォローする"
+      expect(current_path).to eq following_user_path(second_user)
+      expect(page).to have_button "フォロー中"
+    }.to change(Relationship, :count).by(1)
+  end
+
+  it "フォロー一覧ページでフォローしているユーザーをアンフォローでき、ページを移動しないこと" do
+    user.save
+    second_user.save
+    third_user = FactoryBot.create(:user)
+    test_log_in
+    user.follow(third_user)
+    second_user.follow(third_user)
+    visit user_path(second_user)
+    click_link "following-count"
+    expect {
+      click_button "フォロー中"
+      expect(current_path).to eq following_user_path(second_user)
+      expect(page).to have_button "フォローする"
+    }.to change(Relationship, :count).by(-1)
   end
 end

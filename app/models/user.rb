@@ -1,6 +1,14 @@
 class User < ApplicationRecord
-  # このモデルのidを外部キーとして抱えるクラス(discovery)が存在し、そのレコードが複数登録可能であることを表す
+  # このモデル(User)のidを外部キーとして抱えるクラス(discovery)が存在し、そのレコードが複数登録可能であることを表す
   has_many :discoveries, dependent: :destroy
+
+  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+
+  has_many :following, through: :active_relationships, source: :followed
+
+  has_many :passive_relationship, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+
+  has_many :followers, through: :passive_relationship
 
   # DBには保存されないがUserオブジェクトから呼び出せる仮想的な属性を設定
   attr_accessor :remember_token
@@ -13,6 +21,7 @@ class User < ApplicationRecord
   validates :introduce, length: { maximum: 140 }
 
   has_secure_password
+
   # has_secure_passwordは新しくレコードを追加する時のみpresenceが適用される
   # そのためupdateした際などで更新した際は適用されないため、validatesで記述する
   # allow_nilはupdateの際はpasswordを送らなくてもいいようにする
@@ -52,5 +61,17 @@ class User < ApplicationRecord
 
   def m_forget
     update_attribute(:remember_digest, nil)
+  end
+
+  def follow(other_user)
+    self.following << other_user
+  end
+
+  def unfollow(other_user)
+    self.active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  def following?(other_user)
+    self.following.include?(other_user)
   end
 end

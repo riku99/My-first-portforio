@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :user_logged_in?, only: [:edit, :update, :imgd, :destroy]
+  before_action :user_logged_in?, only: [:edit, :update, :imgd, :destroy, :following, :followers]
   before_action :correct_user?, only: [:edit, :update, :imgd]
   before_action :user_admin?, only: [:destroy]
 
@@ -46,6 +46,12 @@ class UsersController < ApplicationController
     user.image.purge    # ユーザーの画像を削除
     #user.save    saveはupdateアクションで行うので、ここでは行わない
   end
+
+  def following
+    @user = User.find(params[:id])
+  end
+
+  
 
   private
 

@@ -1,42 +1,55 @@
 <% provide(:title, "Show-profile") %>
-<div class="user-show-wrapper">
-  <div class="user-show-container">
-    <div class="user-profile">
-      <div class="user-profile-main">
-      <div class="user-id"><%= @user.acount_id %></div>
+  <div class="user-show-wrapper">
+    <div class="user-show-container">
+      <div class="user-profile">
+        <div class="user-profile-main">
+          <div class="user-id"><%= @user.acount_id %></div>
 
-      <% if @user.image.attached? %>
-      <div class="user-image">
-        <%= image_tag @user.image.variant(resize_to_fill: [120, 120]), class: "image" %>
-      </div>
-      <% else %>
-      <div class="user-image">
-        <%= image_tag 'no-user.png', :size => '120x120', class: "no-image" %>
-      </div>
-      <% end %>
+          <% if @user.image.attached? %>
+            <div class="user-image">
+              <%= image_tag @user.image.variant(resize_to_fill: [120, 120]), class: "image" %>
+            </div>
+          <% else %>
+            <div class="user-image">
+              <%= image_tag 'no-user.png', :size => '120x120', class: "no-image" %>
+            </div>
+          <% end %>
 
-      <div class="user-score">
-        <p class="label-score">score</p>
-        <%= @user.score %>
-      </div>
-      <div class="user-target-score">
-        <p class="label-target-score">target score</p>
-        <%= @user.target_score %>
-      </div>
-      <div class="user-name"><%= @user.name %></div>
-      <% if @user.introduce %>
-      <div class="user-introduce">
-        <%= safe_join(@user.introduce.split("\n"), tag(:br)) %>
-      </div>
-      <% end %>
-      <% if @user == current_user %>
-        <%= link_to "プロフィールを編集", edit_user_path(@user), {class: "edit-profile-link"} %>
-      <% end %>
-      <div class="user-delete">
-        <% if current_user && current_user.admin? && current_user != @user %>
-          <%= link_to "ユーザーを削除", user_path(@user.id), method: :delete, data: {confirm: "削除しますか？"} %>
+          <% if logged_in? %>
+            <% unless current_user == @user %>
+              <div class="follow-form">
+                <% if current_user.following?(@user) %>
+                  <%= render "unfollow", {object: @user, page: nil, user_id: nil, follow_view: "s-unfollow"} %>
+                <% else %>
+                  <%= render "follow", {object: @user, page: nil, user_id: nil, follow_view: "s-follow"} %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+          <div class="following-status">
+            <div class="following-label">
+              <span>フォロー中</span>
+            </div>
+            <%= link_to(following_user_path(@user), id: "following-count") do %>
+            <div class="following-count">
+              <%= @user.following.count %>
+            </div>
+          <% end %>
+        </div>
+        <div class="user-name"><%= @user.name %></div>
+        <% if @user.introduce %>
+          <div class="user-introduce">
+            <%= safe_join(@user.introduce.split("\n"), tag(:br)) %>
+          </div>
         <% end %>
-      </div>
+        <% if @user == current_user %>
+          <%= link_to "プロフィールを編集", edit_user_path(@user), {class: "edit-profile-link"} %>
+        <% end %>
+        <div class="user-delete">
+          <% if current_user && current_user.admin? && current_user != @user %>
+            <%= link_to "ユーザーを削除", user_path(@user.id), method: :delete, data: {confirm: "削除しますか？"} %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

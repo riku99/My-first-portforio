@@ -43,6 +43,18 @@
   border-radius: 50%;
 }
 
+.following-status {
+  text-align: center;
+  margin-top: 90px;
+  width: 250px;
+  margin-left: 260px;
+}
+
+.following-count {
+  color: black;
+  font-weight: bold;
+}
+
 .user-score {
   float: left;
   margin-top: 110px;
@@ -203,4 +215,89 @@
   margin-top: 100px;
   color: rgb(0, 133, 255);
   border: none;
+}
+
+.following-wrapper {
+height: 100vh;
+background-color: rgb(227, 227, 227);
+}
+
+
+.following-container {
+  width: 500px;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.following-user {
+  background-color: white;
+  width: 500px;
+  height: 100vh;
+  margin: 0 auto;
+  margin-top: 60px;
+  padding-top: 10px;
+  overflow: scroll;
+}
+
+.following {
+  width: 430px;
+  min-height: 55px;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding-bottom: 20px;
+  border-bottom: solid 1px rgb(219, 219, 219);
+  position: relative;
+}
+
+.following-user-image {
+  float: left;
+  margin-right: 10px;
+}
+
+.following-user-id {
+  padding-bottom: 7px;
+  color: rgba(116, 116, 116, 0.42)
+}
+
+.following-user-name {
+  color: black;
+  font-weight: bold;
+}
+
+.following-form {
+  position: absolute;
+  top: 22px;
+  left: 250px;
+}
+
+.f-follow {
+  background-color: rgba(255, 191, 0, 0.8);
+  border: none;
+  padding: 3px 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.f-unfollow {
+  padding: 3px 25px;
+  border: solid 1px rgb(219, 219, 219);
+}
+
+.s-follow {
+  margin-left: 30px;
+  position: absolute;
+  top: 130px;
+  border: none;
+  background-color: rgba(255, 191, 0, 0.8);
+  color: white;
+  font-weight: bold;
+  padding: 4px 50px;
+}
+
+.s-unfollow {
+  margin-left: 30px;
+  position: absolute;
+  top: 130px;
+  border: solid 1px rgb(219, 219, 219);
+  padding: 4px 50px;
 }
