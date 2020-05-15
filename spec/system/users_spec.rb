@@ -83,8 +83,6 @@ describe "Users", type: :system do
     attach_file "プロフィール画像を選択", "#{Rails.root}/spec/images/test.jpg", make_visible: true
     fill_in "Name", with: "yu-ri"
     fill_in "User_id", with: user.acount_id
-    fill_in "Score", with: user.score
-    fill_in "Target score", with: user.target_score
     fill_in "Introduce", with: user.introduce
     #execute_script('window.scrollBy(0,10000)') 下までスクロールする
     click_button "Update"
@@ -102,8 +100,6 @@ describe "Users", type: :system do
     click_link "プロフィールを編集"
     fill_in "Name", with: user.name
     fill_in "User_id", with: ""
-    fill_in "Score", with: user.score
-    fill_in "Target score", with: user.target_score
     fill_in "Introduce", with: user.introduce
     click_button "Update"
     expect(user.reload.name).to_not eq ""

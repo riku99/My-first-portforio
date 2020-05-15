@@ -1,4 +1,4 @@
-  <% provide(:title, "discovery一覧") %>
+<% provide(:title, "discovery一覧") %>
 
   <div class="discovery-index-wrapper">
     <div class="discovery-index-container">
@@ -7,37 +7,46 @@
           <div class="discovery">
             <%= link_to(user_path(d.user), id: "discovery-profile-link") do %>
             <% if d.user.image.attached? %>
-            <div class="discovery-profile">
-              <%= image_tag d.user.image.variant(resize_to_fill: [40, 40]), class: "image d-image" %>
-              <% if d.user.name %>
-              <p class="discovery-profile-name">
-                <%= d.user.name %>
-              </p>
-              <% end %>
-            </div>
-            <% else %>
-            <div class="discovery-profile">
-              <%= image_tag 'no-user.png', :size => '40x40', class: "no-image d-image" %>
-              <% if d.user.name %>
-              <p class="discovery-profile-name">
-                <%= d.user.name %>
-              </p>
-              <% end %>
-            </div>
-            <% end %>
-            <% end %>
-            <%= link_to(discovery_path(d), id: "content-link") do %>
-            <div class="discovery-index-content">
-              <%= safe_join(d.content.split("\n"), tag(:br)) %>
-              <div class="create-date">
-                <%= l d.created_at %>
+              <div class="discovery-profile">
+                <%= image_tag d.user.image.variant(resize_to_fill: [40, 40]), class: "image d-image" %>
+                <% if d.user.name %>
+                  <p class="discovery-profile-name">
+                    <%= d.user.name %>
+                  </p>
+                <% end %>
               </div>
-            </div>
+            <% else %>
+              <div class="discovery-profile">
+                <%= image_tag 'no-user.png', :size => '40x40', class: "no-image d-image" %>
+                <% if d.user.name %>
+                  <p class="discovery-profile-name">
+                    <%= d.user.name %>
+                  </p>
+                <% end %>
+              </div>
             <% end %>
+          <% end %>
+          <%= link_to(discovery_path(d), id: "content-link") do %>
+          <div class="discovery-index-content">
+            <%= safe_join(d.content.split("\n"), tag(:br)) %>
+            <div class="create-date">
+              <%= l d.created_at %>
+            </div>
           </div>
         <% end %>
-        <%= link_to "投稿する", new_discovery_path, class: "discovery-new-link" %>
+        <% if logged_in? %>
+          <% unless d.user == current_user %>
+            <% if current_user.favorite?(d) %>
+              <%= render "shared/unfavorite", {object: d, page: "index", favorite_view: "i-unfavo"} %>
+            <% else %>
+              <%= render "shared/favorite", {object: d, page: "index", favorite_view: "i-favo"} %>
+            <% end %>
+          <% end %>
+        <% end %>
       </div>
-    </div>
+    <% end %>
+    <%= link_to "投稿する", new_discovery_path, class: "discovery-new-link" %>
   </div>
-  <footer></footer>
+</div>
+</div>
+<footer></footer>

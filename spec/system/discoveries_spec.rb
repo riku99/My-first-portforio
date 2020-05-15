@@ -88,4 +88,37 @@ require 'rails_helper'
         visit current_path    #一旦アプリを更新
       }.to change(Discovery, :count).by(-1)
     end
+
+    it "ログインしていなければお気に入りボタンが表示されていないこと" do
+      discovery.save
+      visit discoveries_path
+      expect(page).to_not have_css "fa fa-star"
+      visit discovery_path(discovery)
+      expect(page).to_not have_css "fa fa-star"
+    end
+
+    it "お気に入りボタンを押し、お気に入りに登録できること" do
+      discovery.save
+      user.save
+      test_log_in
+      visit discoveries_path
+      expect {
+        find('.i-favo').click   # 文字列のないアイコンをクリック
+        expect(current_path).to eq discoveries_path
+      }.to change(Favorite, :count).by(1)
+      expect(user.favorite?(discovery)).to be_truthy
+    end
+
+    it "お気に入り解除ボタンを押し、お気に入りの登録を解除できること", focus: true do
+      discovery.save
+      user.save
+      test_log_in
+      user.favo(discovery)
+      visit discoveries_path
+      expect {
+        find('.i-unfavo').click
+        expect(current_path).to eq discoveries_path
+      }.to change(Favorite, :count).by(-1)
+      expect(user.favorite?(discovery)).to_not be_truthy
+    end
   end

@@ -1,0 +1,8 @@
+<div class="favorite">
+  <%= form_for(current_user.favorites.find_by(discovery_id: object.id), html: { method: :delete }) do |f| %>
+  <%= hidden_field_tag :page, page %>
+  <%= f.button :type => "submit", style: 'border-style: none;', class: favorite_view do %>
+  <i class="fa fa-star"></i>
+  <% end %>
+  <% end %>
+</div>

@@ -10,6 +10,11 @@ class User < ApplicationRecord
 
   has_many :followers, through: :passive_relationship
 
+  has_many :favorites, dependent: :destroy
+
+  # Favoriteでbelongs_to discoveryを指定することで取得したdiscovery_idがDiscoveryの主キーと関連する
+  has_many :favo_discovery, through: :favorites, source: :discovery
+
   # DBには保存されないがUserオブジェクトから呼び出せる仮想的な属性を設定
   attr_accessor :remember_token
   before_save { self.email = self.email.downcase }
@@ -74,4 +79,17 @@ class User < ApplicationRecord
   def following?(other_user)
     self.following.include?(other_user)
   end
+
+  def favo(other_discovery)
+    self.favo_discovery << other_discovery
+  end
+
+  def favorite?(other_discovery)
+    self.favo_discovery.include?(other_discovery)
+  end
+
+  def unfavorite(other_discovery)
+    self.favorites.find_by(discovery_id: other_discovery.id).destroy
+  end
+  
 end
