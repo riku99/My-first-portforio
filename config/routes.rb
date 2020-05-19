@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :discoveries
   resources :relationships, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]
+  resources :comments, only: [:new, :create, :destroy, :show]
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"

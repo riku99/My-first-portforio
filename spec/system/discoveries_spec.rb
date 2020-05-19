@@ -15,7 +15,7 @@ require 'rails_helper'
       expect(page).to have_content "投稿しました"
     end
 
-    it "関連づいたユーザーのプロフィール画像が表示されていること" do
+    it "関連づいたユーザーのプロフィール画像が表示されている" do
       user.save
       test_log_in
       visit new_discovery_path
@@ -61,7 +61,7 @@ require 'rails_helper'
       expect(page).to have_content "#{discovery.content}"
     end
 
-    it "プロフィールをクリックしたらそのユーザーの詳細ページに行くこと" do
+    it "プロフィールをクリックしたらそのユーザーの詳細ページに行く" do
       discovery.save    # assotiationでuserと関連づいてるので、discoveryを作成した時点でuserが作成される
       test_log_in
       visit discoveries_path
@@ -74,7 +74,7 @@ require 'rails_helper'
       expect(current_path).to eq login_path
     end
 
-    it "削除リンクをクリックしたらdiscoveryが削除されること" do
+    it "削除リンクをクリックしたらdiscoveryが削除される" do
       user.save
       test_log_in
       visit new_discovery_path
@@ -97,7 +97,7 @@ require 'rails_helper'
       expect(page).to_not have_css "fa fa-star"
     end
 
-    it "お気に入りボタンを押し、お気に入りに登録できること" do
+    it "お気に入りボタンを押し、お気に入りに登録できる" do
       discovery.save
       user.save
       test_log_in
@@ -109,7 +109,7 @@ require 'rails_helper'
       expect(user.favorite?(discovery)).to be_truthy
     end
 
-    it "お気に入り解除ボタンを押し、お気に入りの登録を解除できること", focus: true do
+    it "お気に入り解除ボタンを押し、お気に入りの登録を解除できる" do
       discovery.save
       user.save
       test_log_in

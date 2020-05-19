@@ -15,6 +15,8 @@ class User < ApplicationRecord
   # Favoriteでbelongs_to discoveryを指定することで取得したdiscovery_idがDiscoveryの主キーと関連する
   has_many :favo_discovery, through: :favorites, source: :discovery
 
+  has_many :comments, dependent: :destroy
+
   # DBには保存されないがUserオブジェクトから呼び出せる仮想的な属性を設定
   attr_accessor :remember_token
   before_save { self.email = self.email.downcase }
@@ -91,5 +93,5 @@ class User < ApplicationRecord
   def unfavorite(other_discovery)
     self.favorites.find_by(discovery_id: other_discovery.id).destroy
   end
-  
+
 end

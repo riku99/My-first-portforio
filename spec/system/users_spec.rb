@@ -93,7 +93,7 @@ describe "Users", type: :system do
     expect(page).to have_content "更新しました"
   end
 
-  it "編集ページで無効なデータを入力し、更新されないこと" do
+  it "編集ページで無効なデータを入力し、更新されない" do
     user.save
     test_log_in
     visit user_path(user)

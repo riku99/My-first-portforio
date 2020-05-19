@@ -31,20 +31,56 @@
         <div class="create-date">
           <%= l @discovery.created_at %>
         </div>
+
         <% if logged_in? %>
-          <% unless @discovery.user == current_user %>
-            <% if current_user.favorite?(@discovery) %>
-              <%= render "shared/unfavorite", {object: @discovery, page: "show", favorite_view: "s-unfavo"} %>
+          <% if current_user.favorite?(@discovery) %>
+            <%= render "shared/unfavorite", {object: @discovery, page: "show", favorite_view: "s-unfavo"} %>
+          <% else %>
+            <%= render "shared/favorite", {object: @discovery, page: "show", favorite_view: "s-favo"} %>
+          <% end %>
+          <%= link_to(new_comment_path(params: { discovery_id: @discovery.id} ), class: "comment-view") do %>
+          <i class="fa fa-comment"></i>
+        <% end %>
+      <% end %>
+      <% if current_user == @discovery.user %>
+        <%= link_to "削除する", discovery_path(@discovery), method: :delete, data: {confirm: "削除しますか？"}, class: "dis-delete-link" %>
+      <% end %>
+    </div>
+
+    <% if @comment %>
+      <p class="comment-logo">
+        コメント
+      </p>
+      <% @comment.each do |c| %>
+        <div class="discovery come">
+          <%= link_to(user_path(c.user), id: "discovery-profile-link",) do %>
+          <div class="discovery-profile">
+            <% if c.user.image.attached? %>
+              <%= image_tag c.user.image.variant(resize_to_fill: [40, 40]), class: "image d-image" %>
             <% else %>
-              <%= render "shared/favorite", {object: @discovery, page: "show", favorite_view: "s-favo"} %>
+              <%= image_tag 'no-user.png', :size => '40x40', class: "no-image d-image" %>
+            <% end %>
+            <% if c.user.name %>
+              <div class="discovery-profile-name come-name">
+                <%= c.user.name %>
+              </div>
             <% end %>
           <% end %>
-        <% end %>
-        <% if current_user == @discovery.user %>
-          <%= link_to "削除する", discovery_path(@discovery), method: :delete, data: {confirm: "削除しますか？"}, class: "dis-delete-link" %>
-        <% end %>
+        </div>
+        <%= link_to(comment_path(c), id: "comment-content-link") do %>
+        <div class="comment-content discovery-index-content">
+          <%= safe_join(c.content.split("\n"), tag(:br)) %>
+          <div class="create-date">
+            <%= l c.created_at %>
+          </div>
+
+        </div>
       </div>
-    </div>
-  </div>
+    <% end %>
+    <% end %>
+  <% end %>
+
+</div>
+</div>
 </div>
 <footer></footer>

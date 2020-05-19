@@ -7,6 +7,8 @@ class Discovery < ApplicationRecord
 
   has_many :favo_user, through: :favorites, source: :user
 
+  has_many :comments, dependent: :destroy
+
   validates :content, presence: true, length: { maximum: 150 }
   default_scope -> { order(created_at: :desc) }
 end

@@ -1,0 +1,33 @@
+<div class="discovery-show-wrapper">
+  <div class="discovery-show-container">
+    <div class="discovery-show">
+      <div class="disc">
+      <%= link_to(user_path(@comment.user), id: "discovery-profile-link") do %>
+        <div class="discovery-profile">
+
+          <% if @comment.user.image.attached? %>
+            <%= image_tag @comment.user.image.variant(resize_to_fill: [40, 40]), class: "image d-image" %>
+          <% else %>
+            <%= image_tag 'no-user.png', :size => '40x40', class: "no-image d-image" %>
+          <% end %>
+
+          <% if @comment.user.name %>
+            <p class="discovery-profile-name">
+              <%= @comment.user.name %>
+            </p>
+          <% end %>
+
+        </div>
+      <% end %>
+
+      <div class="discovery-show-content">
+        <%= safe_join(@comment.content.split("\n"), tag(:br)) %>
+      </div>
+      <div class="create-date">
+        <%= l @comment.created_at %>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>

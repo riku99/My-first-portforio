@@ -17,6 +17,10 @@ a {
   text-decoration: none; /*リンク下の線を消す*/
 }
 
+button {
+  outline: 0;    /* ボタンを押す際に発生するの青枠戦を消す */
+}
+
 header {
   height: 50px;
   width: 100%;

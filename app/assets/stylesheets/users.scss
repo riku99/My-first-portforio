@@ -276,11 +276,13 @@ background-color: rgb(227, 227, 227);
   padding: 3px 20px;
   color: white;
   font-weight: bold;
+  outline: 0;
 }
 
 .f-unfollow {
   padding: 3px 25px;
   border: solid 1px rgb(219, 219, 219);
+  outline: 0;
 }
 
 .s-follow {
@@ -292,6 +294,7 @@ background-color: rgb(227, 227, 227);
   color: white;
   font-weight: bold;
   padding: 4px 50px;
+  outline: 0;
 }
 
 .s-unfollow {
@@ -300,4 +303,5 @@ background-color: rgb(227, 227, 227);
   top: 130px;
   border: solid 1px rgb(219, 219, 219);
   padding: 4px 50px;
+  outline: 0;
 }

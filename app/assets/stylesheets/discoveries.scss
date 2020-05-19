@@ -59,11 +59,19 @@
 
 .i-favo {
   font-size: 20px;
+  float: left;
+  margin-right: 20px;
 }
 
 .i-unfavo {
   font-size: 20px;
   color: rgba(255, 191, 0, 0.8);
+  float: left;
+  margin-right: 20px;
+}
+
+.comment-view {
+  color: rgb(185, 185, 185);
 }
 
 .new-wrapper {
@@ -109,11 +117,9 @@
   width: 420px;
   border-bottom: solid 1px rgb(219, 219, 219);
   padding-bottom: 20px;
-  position: absolute;
-  top: 80px;
-  left: 0;
-  right: 0;
   margin: 0 auto;
+  margin-top: 80px;
+  overflow:hidden;
 }
 
 .discovery-show-content {
@@ -123,11 +129,31 @@
 
 .s-favo {
   font-size: 20px;
+  float: left;
+  margin-right: 20px;
 }
 
 .s-unfavo {
   font-size: 20px;
   color: rgba(255, 191, 0, 0.8);
+  float: left;
+  margin-right: 20px;
+}
+
+.comment-logo {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 20px;
+  font-family: Wawati SC;
+}
+
+.come-name {
+  margin-top: 18px;
+}
+
+.comment-content {
+  color: black;
 }
 
 .dis-delete-link {
@@ -177,9 +203,11 @@
   margin: 0 auto;
   height: 300px;
   margin-top: 40px;
-  border:solid 0px;    /* フォームの枠線を消す */
+  border: none;
+  outline: 0;
   font-size: 20px;
   display: block;
+  resize: none;
 }
 
 .content-form-label {
@@ -195,4 +223,5 @@
   margin-top: 10px;
   font-size: 20px;
   color: white;
+  border: none;
 }

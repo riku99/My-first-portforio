@@ -34,19 +34,24 @@
             </div>
           </div>
         <% end %>
+
         <% if logged_in? %>
-          <% unless d.user == current_user %>
-            <% if current_user.favorite?(d) %>
-              <%= render "shared/unfavorite", {object: d, page: "index", favorite_view: "i-unfavo"} %>
-            <% else %>
-              <%= render "shared/favorite", {object: d, page: "index", favorite_view: "i-favo"} %>
-            <% end %>
+          <% if current_user.favorite?(d) %>
+            <%= render "shared/unfavorite", {object: d, page: "index", favorite_view: "i-unfavo"} %>
+          <% else %>
+            <%= render "shared/favorite", {object: d, page: "index", favorite_view: "i-favo"} %>
           <% end %>
         <% end %>
-      </div>
-    <% end %>
-    <%= link_to "投稿する", new_discovery_path, class: "discovery-new-link" %>
-  </div>
+
+        <% if logged_in? %>
+          <%= link_to(new_comment_path(params: { discovery_id: d.id} ), class: "comment-view") do %>
+          <i class="fa fa-comment"></i>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= link_to "投稿する", new_discovery_path, class: "discovery-new-link" %>
+</div>
 </div>
 </div>
 <footer></footer>
