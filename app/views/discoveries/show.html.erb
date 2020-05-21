@@ -73,12 +73,20 @@
           <div class="create-date">
             <%= l c.created_at %>
           </div>
-
         </div>
-      </div>
-    <% end %>
-    <% end %>
+      <% end %>
+
+      <% if logged_in? %>
+      <% if current_user.favorite_comment?(c) %>
+        <%= render "shared/unfavorite_come", { object: c, comment: "come", favorite_view: "c-unfavo", page: "discovery" } %>
+      <% else %>
+        <%= render "shared/favorite_come", { object: c, comment: "come", favorite_view: "c-favo", page: "discovery" } %>
+      <% end %>
+      <% end %>
+
+    </div>
   <% end %>
+<% end %>
 
 </div>
 </div>

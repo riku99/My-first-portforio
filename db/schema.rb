@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_074534) do
+ActiveRecord::Schema.define(version: 2020_05_19_070106) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 2020_05_16_074534) do
     t.integer "discovery_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "comment_id"
+    t.index ["comment_id"], name: "index_favorites_on_comment_id"
     t.index ["discovery_id"], name: "index_favorites_on_discovery_id"
     t.index ["user_id", "discovery_id"], name: "index_favorites_on_user_id_and_discovery_id", unique: true
     t.index ["user_id"], name: "index_favorites_on_user_id"
@@ -89,4 +91,5 @@ ActiveRecord::Schema.define(version: 2020_05_16_074534) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "discoveries"
   add_foreign_key "comments", "users"
+  add_foreign_key "favorites", "comments"
 end

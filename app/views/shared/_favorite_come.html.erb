@@ -1,0 +1,10 @@
+<div class="favorite">
+  <%= form_for(current_user.favorites.new) do |f| %>
+  <%= hidden_field_tag :comment_id, object.id %>
+  <%= hidden_field_tag :comment, comment %>
+  <%= hidden_field_tag :page, page %>
+  <%= f.button :type => "submit", style: 'border-style: none;', class: favorite_view do %>
+  <i class="fa fa-star"></i>
+  <% end %>
+  <% end %>
+</div>

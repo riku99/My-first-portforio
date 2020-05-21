@@ -3,8 +3,6 @@ FactoryBot.define do
     name { "riku" }
     sequence(:email) { |n| "riku#{n}@example.com" }
     sequence(:acount_id) { |n| "riku#{n}" }
-    score { 770 }
-    target_score { 900 }
     password { "foobar" }
     password_confirmation { "foobar" }
     introduce { "hello" }

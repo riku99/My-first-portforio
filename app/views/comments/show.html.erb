@@ -27,6 +27,14 @@
         <%= l @comment.created_at %>
       </div>
 
+      <% if logged_in? %>
+      <% if current_user.favorite_comment?(@comment) %>
+        <%= render "shared/unfavorite_come", { object: @comment, comment: "come", favorite_view: "c-unfavo", page: "show" } %>
+      <% else %>
+        <%= render "shared/favorite_come", { object: @comment, comment: "come", favorite_view: "c-favo", page: "show" } %>
+      <% end %>
+      <% end %>
+
     </div>
   </div>
 </div>

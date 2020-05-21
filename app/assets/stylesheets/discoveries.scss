@@ -24,6 +24,7 @@
   margin-top: 20px;
   border-bottom: solid 1px rgb(219, 219, 219);
   padding-bottom: 20px;
+  overflow: hidden;
 }
 
 .d-image {
@@ -61,6 +62,7 @@
   font-size: 20px;
   float: left;
   margin-right: 20px;
+  color: rgb(185, 185, 185);
 }
 
 .i-unfavo {
@@ -131,6 +133,7 @@
   font-size: 20px;
   float: left;
   margin-right: 20px;
+  color: rgb(185, 185, 185);
 }
 
 .s-unfavo {
@@ -154,6 +157,20 @@
 
 .comment-content {
   color: black;
+}
+
+.c-favo {
+  font-size: 20px;
+  margin-right: 20px;
+  float: left;
+  color: rgb(185, 185, 185);
+}
+
+.c-unfavo {
+  font-size: 20px;
+  color: rgba(255, 191, 0, 0.8);
+  float: left;
+  margin-right: 20px;
 }
 
 .dis-delete-link {

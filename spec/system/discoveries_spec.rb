@@ -1,7 +1,7 @@
 require 'rails_helper'
   describe "Discoveries", type: :system do
     let(:discovery) { FactoryBot.build(:discovery) }
-    let(:user) { FactoryBot.build(:user) }
+    let(:user) { FactoryBot.create(:user) }
 
 
     it "有効なデータを入力し、inidexページに表示される" do
@@ -121,4 +121,28 @@ require 'rails_helper'
       }.to change(Favorite, :count).by(-1)
       expect(user.favorite?(discovery)).to_not be_truthy
     end
+
+    it "discoveryのshowページからコメントをお気に入り登録できる" do
+      comment = FactoryBot.create(:comment)
+      test_log_in
+      visit discovery_path(comment.discovery)
+      expect {
+        find(".c-favo").click
+      }.to change(Favorite, :count).by(1)
+      expect(current_path).to eq discovery_path(comment.discovery)
+      expect(user.favorite_comment?(comment)).to be_truthy
+    end
+
+    it "discoveryのshowページからコメントのお気に入りを解除できる" do
+      comment = FactoryBot.create(:comment)
+      test_log_in
+      user.favorite_comment(comment)
+      visit discovery_path(comment.discovery)
+      expect {
+        find(".c-unfavo").click
+      }.to change(Favorite, :count).by(-1)
+      expect(current_path).to eq discovery_path(comment.discovery)
+      expect(user.favorite_comment?(comment)).to_not be_truthy
+    end
+
   end
