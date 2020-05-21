@@ -24,7 +24,7 @@ require 'rails_helper'
       expect(current_path).to eq login_path
     end
 
-    it "コメントのshow画面からコメントをお気に入り登録できる" do
+    it "コメントのshow画面からコメントをお気に入り登録できる", focus: true, retry: 3 do  # retryでランダムに落ちるテストを数回実行
       comment = FactoryBot.create(:comment)
       test_log_in
       visit discovery_path(comment.discovery)
@@ -36,7 +36,7 @@ require 'rails_helper'
       expect(user.favorite_comment?(comment)).to be_truthy
     end
 
-    it "コメントのshow画面からコメントのお気に入りを解除できる" do
+    it "コメントのshow画面からコメントのお気に入りを解除できる", focus: true, retry: 3 do
       comment = FactoryBot.create(:comment)
       test_log_in
       user.favorite_comment(comment)
