@@ -10,6 +10,12 @@ FactoryBot.define do
     remember_digest {nil}
     admin { true }
 
+    trait :with_comment do
+      # userが作成された後、user_idがuserであるcommentを一つ作成する
+      # commentはファクトリでdiscoveryとassosiationされているのでdiscoveryも作成される
+      after(:create) { |user| create_list(:comment, 1, user: user)}
+    end
+
     trait :second_user do
       name { "riku" }
       email { "rikusecond@example.com" }

@@ -5,8 +5,7 @@ require 'rails_helper'
 
 
     it "有効なデータを入力し、inidexページに表示される" do
-      user.save
-      test_log_in
+      test_log_in(user)
       visit new_discovery_path
       fill_in "勉強して気づいたこと、発見したことをなんでも投稿しよう！", with: discovery.content
       click_button "Post"
@@ -16,8 +15,7 @@ require 'rails_helper'
     end
 
     it "関連づいたユーザーのプロフィール画像が表示されている" do
-      user.save
-      test_log_in
+      test_log_in(user)
       visit new_discovery_path
       fill_in "勉強して気づいたこと、発見したことをなんでも投稿しよう！", with: discovery.content
       click_button "Post"
@@ -25,16 +23,14 @@ require 'rails_helper'
     end
 
     it "Discoveryのカウントが増える" do
-      user.save
-      test_log_in
+      test_log_in(user)
       expect {
         create_one_discovery(discovery)
       }.to change(Discovery, :count).by(1)
     end
 
     it "無効なデータを入力し、indexページに表示されずオブジェクトの数が変わらない" do
-      user.save
-      test_log_in
+      test_log_in(user)
       discovery.content = nil
       expect {
         create_one_discovery(discovery)
@@ -42,8 +38,7 @@ require 'rails_helper'
     end
 
     it "newページにレンダーされる" do
-      user.save
-      test_log_in
+      test_log_in(user)
       discovery.content = nil
       create_one_discovery(discovery)   # supportディレクトリ内に書いたメソッドを呼び出す
       expect(page).to have_css ".discovery-form"
@@ -51,8 +46,7 @@ require 'rails_helper'
     end
 
     it "クリックしたインスタンスと同じインスタンスがshowページで表示される" do
-      user.save
-      test_log_in
+      test_log_in(user)
       visit new_discovery_path
       fill_in "勉強して気づいたこと、発見したことをなんでも投稿しよう！", with: "#{discovery.content}"
       click_button "Post"
@@ -63,7 +57,7 @@ require 'rails_helper'
 
     it "プロフィールをクリックしたらそのユーザーの詳細ページに行く" do
       discovery.save    # assotiationでuserと関連づいてるので、discoveryを作成した時点でuserが作成される
-      test_log_in
+      test_log_in(user)
       visit discoveries_path
       click_link "discovery-profile-link"
       expect(current_path).to eq user_path(discovery.user)
@@ -75,8 +69,7 @@ require 'rails_helper'
     end
 
     it "削除リンクをクリックしたらdiscoveryが削除される" do
-      user.save
-      test_log_in
+      test_log_in(user)
       visit new_discovery_path
       fill_in "勉強して気づいたこと、発見したことをなんでも投稿しよう！", with: "#{discovery.content}"
       click_button "Post"
@@ -99,8 +92,7 @@ require 'rails_helper'
 
     it "お気に入りボタンを押し、お気に入りに登録できる" do
       discovery.save
-      user.save
-      test_log_in
+      test_log_in(user)
       visit discoveries_path
       expect {
         find('.i-favo').click   # 文字列のないアイコンをクリック
@@ -111,8 +103,7 @@ require 'rails_helper'
 
     it "お気に入り解除ボタンを押し、お気に入りの登録を解除できる" do
       discovery.save
-      user.save
-      test_log_in
+      test_log_in(user)
       user.favo(discovery)
       visit discoveries_path
       expect {
@@ -124,7 +115,7 @@ require 'rails_helper'
 
     it "discoveryのshowページからコメントをお気に入り登録できる" do
       comment = FactoryBot.create(:comment)
-      test_log_in
+      test_log_in(user)
       visit discovery_path(comment.discovery)
       expect {
         find(".c-favo").click
@@ -135,7 +126,7 @@ require 'rails_helper'
 
     it "discoveryのshowページからコメントのお気に入りを解除できる" do
       comment = FactoryBot.create(:comment)
-      test_log_in
+      test_log_in(user)
       user.favorite_comment(comment)
       visit discovery_path(comment.discovery)
       expect {

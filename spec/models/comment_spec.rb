@@ -10,6 +10,13 @@ RSpec.describe Comment, type: :model do
     expect(comment).to_not be_valid
   end
 
+  it "discovery_id,forcomment_idどちらもない場合は無効であること" do
+    comment.discovery_id = nil
+    comment.forcomment_id = nil
+    expect(comment).to_not be_valid
+  end
+
+
   it "contentが151文字以上なら無効であること" do
     comment.content = "a" * 151
     expect(comment).to_not be_valid

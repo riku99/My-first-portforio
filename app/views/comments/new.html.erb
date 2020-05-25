@@ -5,6 +5,7 @@
     <div class="comment">
       <%= form_for(@comment) do |f| %>
         <%= hidden_field_tag :discovery_id, @comment.discovery_id %>
+        <%= hidden_field_tag :forcomment_id, @comment.forcomment_id %>
         <%= f.text_area :content, class: "comment-area", placeholder: "コメントをしよう！" %>
         <%= f.submit "post", class: "comment-btn" %>
       <% end %>

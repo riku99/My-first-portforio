@@ -76,24 +76,67 @@
   color: rgb(185, 185, 185);
 }
 
+.comment-count {
+  font-size: 12px;
+}
+
 .new-wrapper {
-  width: 100%;
+  height: 100vh;
   background-color: rgb(227, 227, 227);
-  height: 100%;
-  position: relative;
 }
 
 .discovery-new-contaienr {
-  height: 60%;
-  width: 50%;
+  width: 500px;
+  height: 100vh;
+  margin: 0 auto;
   background-color: white;
-  /* 要素を真ん中に指定 */
+  overflow: scroll;
+  /* 要素を真ん中に指定
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   margin: auto;
+  */
+}
+
+.discovery-form {
+  background-color: white;
+  width: 410px;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.content-form {
+  width: 410px;
+  height: 500px;
+  border: none;
+  font-size: 18px;
+  margin-top: 80px;
+  outline: 0;    /** フォームの青枠を消す **/
+  resize: none;    /** フォームのリサイズを消す **/
+}
+
+.content-form-label {
+  display: none
+}
+
+.create-link {
+  height: 50px;
+  width: 50px;
+  background-color: rgba(255, 191, 0, 0.8);
+  border-radius: 50%;
+  color: white;
+  font-size: 15px;
+  border: none;
+  outline: 0;
+  display: block;
+    position: fixed;
+    bottom: 30%;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 
 .discovery-show-wrapper {
@@ -105,6 +148,7 @@
   width: 500px;
   height: 100vh;
   margin: 0 auto;
+  background-color: white;
 }
 
 .discovery-show {
@@ -178,30 +222,6 @@
   margin-right: 38px;
 }
 
-.user-new-wrapper {
-  background-color: rgb(227, 227, 227);
-  height: 100%;
-}
-
-.user-new-container {
-  height: 100%;
-  background-color: rgb(227, 227, 227);
-  width: 50%;
-  margin: 0 auto;
-}
-
-.user-new-form {
-  background-color: white;
-  width: 450px;
-  height: 500px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-}
-
 .discovery-new-link {
   position: fixed;
   top: 660px;
@@ -213,32 +233,4 @@
   border-radius: 50%;
   text-align: center;
   line-height: 70px;
-}
-
-.content-form {
-  width: 90%;
-  margin: 0 auto;
-  height: 300px;
-  margin-top: 40px;
-  border: none;
-  outline: 0;
-  font-size: 20px;
-  display: block;
-  resize: none;
-}
-
-.content-form-label {
-  display: none
-}
-
-.create-link {
-  background-color: rgba(255, 191, 0, 0.8);
-  padding: 20px;
-  border-radius: 50%;
-  float: right;
-  margin-right: 30px;
-  margin-top: 10px;
-  font-size: 20px;
-  color: white;
-  border: none;
 }

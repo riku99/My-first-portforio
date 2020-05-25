@@ -1,6 +1,6 @@
 require 'rails_helper'
   describe "Sessions", type: :system do
-    let(:user) { FactoryBot.build(:user) }
+    let(:user) { FactoryBot.create(:user) }
 
 
     it "無効なデータを入れて、ログインされない" do
@@ -12,17 +12,15 @@ require 'rails_helper'
     end
 
     it "有効なデータを入れ、ログインする" do
-      user.save
-      test_log_in
+      test_log_in(user)
       expect(current_path).to eq user_path(user)
       expect(page).to have_content "ログアウト"
     end
 
     it "ログインを要求され、ログイン後に表示させたかったページになる" do
-      user.save
       visit edit_user_path(user)
       expect(current_path).to eq login_path
-      test_log_in
+      test_log_in(user)
       expect(current_path).to eq edit_user_path(user)
     end
 
@@ -32,20 +30,18 @@ require 'rails_helper'
     end
 
     it "永続cookieがある場合はログイン状態になること" do
-      user.save
-      test_log_in
+      test_log_in(user)
       expect(page).to have_content "ログアウト"
-      show_me_the_cookies
+      #show_me_the_cookies
       expire_cookies
-      show_me_the_cookies
+      #show_me_the_cookies
       visit current_path
-      show_me_the_cookies
+      #show_me_the_cookies
       expect(page).to have_content "ログアウト"
     end
 
 
     it "ログアウトリンクをクリックし、ログアウトされる" do
-      user.save
       visit root_path
       click_link "ログイン"
       fill_in "User_id", with: user.acount_id
@@ -59,12 +55,11 @@ require 'rails_helper'
     end
 
     it "２つタブでログインしていて、片方をログアウトさせた後もう片方をログアウトさせてもエラーにならない" do
-      user.save
-      test_log_in
+      test_log_in(user)
 
       # 新しいタブを開く
       within_window open_new_window do
-        test_log_in
+        test_log_in(user)
         click_link "ログアウト"
         page.driver.browser.switch_to.alert.accept
       end

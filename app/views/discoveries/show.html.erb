@@ -40,8 +40,10 @@
           <% end %>
           <%= link_to(new_comment_path(params: { discovery_id: @discovery.id} ), class: "comment-view") do %>
           <i class="fa fa-comment"></i>
+          <span class="comment-count"><%= @discovery.comments.count %></span>
         <% end %>
       <% end %>
+
       <% if current_user == @discovery.user %>
         <%= link_to "削除する", discovery_path(@discovery), method: :delete, data: {confirm: "削除しますか？"}, class: "dis-delete-link" %>
       <% end %>
@@ -77,15 +79,21 @@
       <% end %>
 
       <% if logged_in? %>
-      <% if current_user.favorite_comment?(c) %>
-        <%= render "shared/unfavorite_come", { object: c, comment: "come", favorite_view: "c-unfavo", page: "discovery" } %>
-      <% else %>
-        <%= render "shared/favorite_come", { object: c, comment: "come", favorite_view: "c-favo", page: "discovery" } %>
-      <% end %>
+        <% if current_user.favorite_comment?(c) %>
+          <%= render "shared/unfavorite_come", { object: c, comment: "come", favorite_view: "c-unfavo", page: "discovery" } %>
+        <% else %>
+          <%= render "shared/favorite_come", { object: c, comment: "come", favorite_view: "c-favo", page: "discovery" } %>
+        <% end %>
+
+        <%= link_to(new_comment_path(params: {forcomment_id: c.id}), class: "comment-view") do %>
+        <i class="fa fa-comment"></i>
+        <span class="comment-count"><%= c.forcomments.count %></span>
       <% end %>
 
-    </div>
-  <% end %>
+    <% end %>
+
+  </div>
+<% end %>
 <% end %>
 
 </div>

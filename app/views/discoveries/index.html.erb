@@ -46,6 +46,7 @@
         <% if logged_in? %>
           <%= link_to(new_comment_path(params: { discovery_id: d.id} ), class: "comment-view") do %>
           <i class="fa fa-comment"></i>
+          <span class="comment-count"><%= d.comments.count %></span>
         <% end %>
       <% end %>
     </div>

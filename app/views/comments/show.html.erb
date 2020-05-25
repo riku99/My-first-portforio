@@ -2,7 +2,7 @@
   <div class="discovery-show-container">
     <div class="discovery-show">
       <div class="disc">
-      <%= link_to(user_path(@comment.user), id: "discovery-profile-link") do %>
+        <%= link_to(user_path(@comment.user), id: "discovery-profile-link") do %>
         <div class="discovery-profile">
 
           <% if @comment.user.image.attached? %>
@@ -28,14 +28,69 @@
       </div>
 
       <% if logged_in? %>
-      <% if current_user.favorite_comment?(@comment) %>
-        <%= render "shared/unfavorite_come", { object: @comment, comment: "come", favorite_view: "c-unfavo", page: "show" } %>
-      <% else %>
-        <%= render "shared/favorite_come", { object: @comment, comment: "come", favorite_view: "c-favo", page: "show" } %>
-      <% end %>
+        <% if current_user.favorite_comment?(@comment) %>
+          <%= render "shared/unfavorite_come", { object: @comment, comment: "come", favorite_view: "c-unfavo", page: "show" } %>
+        <% else %>
+          <%= render "shared/favorite_come", { object: @comment, comment: "come", favorite_view: "c-favo", page: "show" } %>
+        <% end %>
+        <%= link_to(new_comment_path(params: {forcomment_id: @comment.id}), class: "comment-view") do %>
+        <i class="fa fa-comment"></i>
+        <span class="comment-count"><%= @comment.forcomments.count %></span>
+        <% end %>
+
+        <% if current_user == @comment.user %>
+          <%= link_to "削除する", comment_path(@comment), method: :delete, data: {confirm: "削除しますか？"}, class: "dis-delete-link" %>
+        <% end %>
       <% end %>
 
     </div>
+
+    <% if @forcomment %>
+      <p class="comment-logo">
+        コメント
+      </p>
+      <% @forcomment.each do |c| %>
+        <div class="discovery come">
+          <%= link_to(user_path(c.user), id: "discovery-profile-link",) do %>
+          <div class="discovery-profile">
+            <% if c.user.image.attached? %>
+              <%= image_tag c.user.image.variant(resize_to_fill: [40, 40]), class: "image d-image" %>
+            <% else %>
+              <%= image_tag 'no-user.png', :size => '40x40', class: "no-image d-image" %>
+            <% end %>
+            <% if c.user.name %>
+              <div class="discovery-profile-name come-name">
+                <%= c.user.name %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <%= link_to(comment_path(c), id: "comment-content-link") do %>
+        <div class="comment-content discovery-index-content">
+          <%= safe_join(c.content.split("\n"), tag(:br)) %>
+          <div class="create-date">
+            <%= l c.created_at %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if logged_in? %>
+        <% if current_user.favorite_comment?(c) %>
+          <%= render "shared/unfavorite_come", { object: c, comment: "come", favorite_view: "c-unfavo", page: "discovery" } %>
+        <% else %>
+          <%= render "shared/favorite_come", { object: c, comment: "come", favorite_view: "c-favo", page: "discovery" } %>
+        <% end %>
+
+        <%= link_to(new_comment_path(params: {forcomment_id: c.id}), class: "comment-view") do %>
+        <i class="fa fa-comment"></i>
+        <span class="comment-count"><%= c.forcomments.count %></span>
+      <% end %>
+
+    <% end %>
+
   </div>
+<% end %>
+<% end %>
+</div>
 </div>
 </div>

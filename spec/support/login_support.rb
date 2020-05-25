@@ -8,10 +8,10 @@ module LoginUser
     session[:user_id] = user.id
   end
 
-  def test_log_in
+  def test_log_in(u)
     visit login_path
-    fill_in "User_id", with: user.acount_id
-    fill_in "Password", with: user.password
+    fill_in "User_id", with: u.acount_id
+    fill_in "Password", with: u.password
     click_button "Login"
   end
 

@@ -1,9 +1,10 @@
 require 'rails_helper'
 describe "Users", type: :system do
-  let(:user) { FactoryBot.build(:user) }
+  let(:user) { FactoryBot.create(:user) }
   let(:second_user) { FactoryBot.build(:user, :second_user) }
 
   it "有効なデータを入力し、ユーザーが作成され、表示されるリンクが変わる" do
+    user = FactoryBot.build(:user)
     visit new_user_path
     within '.header-link-box' do
       expect(page).to have_content "ログイン"
@@ -27,6 +28,7 @@ describe "Users", type: :system do
   end
 
   it "無効なデータを入力し、ユーザが作成されず、表示されるリンクが変わらない" do
+    user = FactoryBot.build(:user)
     visit new_user_path
     within '.header-link-box' do
       expect(page).to have_content "ログイン"
@@ -48,6 +50,7 @@ describe "Users", type: :system do
 
 
   it "showページで正しい値、デフオルトの画像が表示されている" do
+    user = FactoryBot.build(:user)
     user.image = nil
     user.save
     visit user_path(user)
@@ -57,9 +60,8 @@ describe "Users", type: :system do
   end
 
   it "管理者ユーザは他のユーザを削除することができること" do
-    user.save
     second_user.save
-    test_log_in
+    test_log_in(user)
     visit user_path(second_user)
     expect {click_link "ユーザーを削除"
             page.driver.browser.switch_to.alert.accept
@@ -68,15 +70,13 @@ describe "Users", type: :system do
   end
 
   it "画像がアップロードされていたら、その画像が表示されている" do
-    user.save
     visit user_path(user)
     expect(page).to have_css '.image'
   end
 
   it "編集で有効なデータを入力し、更新される" do
     user.image = nil
-    user.save #URLでuserのidを使うのでDBに保存されてる必要がある
-    test_log_in
+    test_log_in(user)
     visit user_path(user)
     click_link "プロフィールを編集"
     # make_visibleで非表示にされている要素を一時的に表示する
@@ -94,8 +94,7 @@ describe "Users", type: :system do
   end
 
   it "編集ページで無効なデータを入力し、更新されない" do
-    user.save
-    test_log_in
+    test_log_in(user)
     visit user_path(user)
     click_link "プロフィールを編集"
     fill_in "Name", with: user.name
@@ -107,8 +106,7 @@ describe "Users", type: :system do
   end
 
   it "編集ページで画像を削除できること" do
-    user.save
-    test_log_in
+    test_log_in(user)
     visit edit_user_path(user)
     click_link "プロフィール画像を削除"
     page.driver.browser.switch_to.alert.accept    # リンクを押したときに出るalertのOKを押す
@@ -118,18 +116,16 @@ describe "Users", type: :system do
   end
 
   it "ログインしてるユーザーでなければ編集できないこと" do
-    user.save
     second_user.save
-    test_log_in
+    test_log_in(user)
     visit edit_user_path(second_user)
     expect(current_path).to eq root_path
     expect(page).to have_content "他のユーザーは編集できません"
   end
 
   it "showページでユーザーをフォローしていない場合はフォローボタンが表示され、フォローできること" do
-    user.save
     second_user.save
-    test_log_in
+    test_log_in(user)
     visit user_path(second_user)
     expect {
       click_button "フォローする"
@@ -139,9 +135,8 @@ describe "Users", type: :system do
   end
 
   it "showページでユーザーをフォローしている場合はフォロー中ボタンが表示され、フォロー解除できること" do
-    user.save
     second_user.save
-    test_log_in
+    test_log_in(user)
     user.follow(second_user)
     visit user_path(second_user)
     expect {
@@ -152,9 +147,8 @@ describe "Users", type: :system do
   end
 
   it "フォロー中一覧ページでフォロー中のユーザーが表示されていること" do
-    user.save
     second_user.save
-    test_log_in
+    test_log_in(user)
     user.follow(second_user)
     visit user_path(user)
     click_link "following-count"
@@ -164,7 +158,6 @@ describe "Users", type: :system do
   end
 
   it "ログインしていなければfollowingページを表示できず、ログイン画面にリダイレクトされること" do
-    user.save
     second_user.save
     visit user_path(user)
     click_link "following-count"
@@ -173,10 +166,9 @@ describe "Users", type: :system do
   end
 
   it "フォロー一覧ページでフォローしてないユーザーをフォローでき、ページを移動しないこと" do
-    user.save
     second_user.save
     third_user = FactoryBot.create(:user)
-    test_log_in
+    test_log_in(user)
     second_user.follow(third_user)
     visit user_path(second_user)
     click_link "following-count"
@@ -188,10 +180,9 @@ describe "Users", type: :system do
   end
 
   it "フォロー一覧ページでフォローしているユーザーをアンフォローでき、ページを移動しないこと" do
-    user.save
     second_user.save
     third_user = FactoryBot.create(:user)
-    test_log_in
+    test_log_in(user)
     user.follow(third_user)
     second_user.follow(third_user)
     visit user_path(second_user)
