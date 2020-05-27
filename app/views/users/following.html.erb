@@ -23,12 +23,10 @@
             <% end %>
           <% end %>
           <% unless current_user == f %>
-            <% if current_user.following?(f) %>
-              <div class="following-form">
+            <div id="following-form">
+              <% if current_user.following?(f) %>
                 <%= render "unfollow", {object: f, page: "following", user_id: @user.id, follow_view: "f-unfollow"} %>
-              </div>
-            <% else %>
-              <div class="following-form">
+              <% else %>
                 <%= render "follow", {object: f, page: "following", user_id: @user.id, follow_view: "f-follow"} %>
               </div>
             <% end %>

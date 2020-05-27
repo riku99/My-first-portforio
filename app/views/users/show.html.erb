@@ -17,7 +17,7 @@
 
           <% if logged_in? %>
             <% unless current_user == @user %>
-              <div class="follow-form">
+              <div id="follow-form">
                 <% if current_user.following?(@user) %>
                   <%= render "unfollow", {object: @user, page: nil, user_id: nil, follow_view: "s-unfollow"} %>
                 <% else %>
@@ -31,7 +31,7 @@
               <span>フォロー中</span>
             </div>
             <%= link_to(following_user_path(@user), id: "following-count") do %>
-            <div class="following-count">
+            <div id="following-count">
               <%= @user.following.count %>
             </div>
           <% end %>

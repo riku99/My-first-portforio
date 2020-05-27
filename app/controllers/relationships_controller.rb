@@ -2,25 +2,36 @@ class RelationshipsController < ApplicationController
   before_action :user_logged_in?
 
   def create
-    user = User.find(params[:followed_id])
-    current_user.follow(user)
+    @user = User.find(params[:followed_id])
+    current_user.follow(@user)
     if params[:follow_page] == "following"
-      @user = User.find(params[:user_id])
-      redirect_to following_user_path(@user)
-      #render "users/following"
+      @other_user = User.find(params[:user_id])
+      respond_to do |format|
+      format.html { redirect_to following_user_path(@other_user) }
+      format.js
+      end
     else
-      redirect_to user_path(user)
+      respond_to do |format|
+      format.html { redirect_to user_path(@user) }
+      format.js
+      end
     end
   end
 
   def destroy
-    user = Relationship.find(params[:id]).followed    # followedはRelationshipのbelongs_toで作成
-    current_user.unfollow(user)
+    @user = Relationship.find(params[:id]).followed    # followedはRelationshipのbelongs_toで作成
+    current_user.unfollow(@user)
     if params[:follow_page] == "following"
-      @user = User.find(params[:user_id])
-      redirect_to following_user_path(@user)
+      @other_user = User.find(params[:user_id])
+      respond_to do |format|
+      format.html { redirect_to following_user_path(@other_user) }
+      format.js
+      end
     else
-      redirect_to user_path(user)
+      respond_to do |format|
+      format.html { redirect_to user_path(@user) }
+      format.js
+    end
     end
   end
 

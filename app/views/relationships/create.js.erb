@@ -1,0 +1,4 @@
+$("#follow-form").html("<%= escape_javascript(render('users/unfollow', {object: @user, page: nil, user_id: nil, follow_view: 's-unfollow'})) %>");
+$("#following-count").html("<%= @user.following.count %>")
+
+$("#following-form").html("<%= escape_javascript(render('users/unfollow', {object: @user, page: 'following', user_id: @user.id, follow_view: 'f-unfollow'})) %>");
