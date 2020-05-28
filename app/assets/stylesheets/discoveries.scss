@@ -63,6 +63,7 @@
   float: left;
   margin-right: 20px;
   color: rgb(185, 185, 185);
+  background-color: white;
 }
 
 .i-unfavo {
@@ -70,14 +71,11 @@
   color: rgba(255, 191, 0, 0.8);
   float: left;
   margin-right: 20px;
+  background-color: inherit;
 }
 
 .comment-view {
   color: rgb(185, 185, 185);
-}
-
-.comment-count {
-  font-size: 12px;
 }
 
 .new-wrapper {
@@ -157,6 +155,7 @@
   height: 100vh;
   margin: 0 auto;
   overflow: scroll;
+  padding-bottom: 20px;
 }
 
 .disc {
@@ -224,7 +223,7 @@
 
 .discovery-new-link {
   position: fixed;
-  top: 660px;
+  bottom: 80px;
   margin-left: 380px;
   color: white;
   background-color: rgba(255, 191, 0, 0.8);

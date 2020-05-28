@@ -190,3 +190,11 @@ li {
   color: white;
   font-family: 'Chalkboard SE';
 }
+
+.favorite-count {
+  font-size: 12px;
+}
+
+.comment-count {
+  font-size: 12px;
+}

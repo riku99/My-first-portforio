@@ -85,52 +85,56 @@ require 'rails_helper'
     it "ログインしていなければお気に入りボタンが表示されていないこと" do
       discovery.save
       visit discoveries_path
-      expect(page).to_not have_css "fa fa-star"
+      expect(page).to_not have_css ".fa fa-star"
       visit discovery_path(discovery)
-      expect(page).to_not have_css "fa fa-star"
+      expect(page).to_not have_css ".fa fa-star"
     end
 
-    it "お気に入りボタンを押し、お気に入りに登録できる" do
+    it "お気に入りボタンを押し、お気に入りに登録できる", js: true do
       discovery.save
       test_log_in(user)
       visit discoveries_path
       expect {
-        find('.i-favo').click   # 文字列のないアイコンをクリック
-        expect(current_path).to eq discoveries_path
+        find('.i-favo').click
+        sleep 0.5
       }.to change(Favorite, :count).by(1)
+      expect(current_path).to eq discoveries_path
       expect(user.favorite?(discovery)).to be_truthy
     end
 
-    it "お気に入り解除ボタンを押し、お気に入りの登録を解除できる" do
+    it "お気に入り解除ボタンを押し、お気に入りの登録を解除できる", js: true do
       discovery.save
       test_log_in(user)
       user.favo(discovery)
       visit discoveries_path
       expect {
         find('.i-unfavo').click
-        expect(current_path).to eq discoveries_path
+        sleep 0.5
       }.to change(Favorite, :count).by(-1)
+      expect(current_path).to eq discoveries_path
       expect(user.favorite?(discovery)).to_not be_truthy
     end
 
-    it "discoveryのshowページからコメントをお気に入り登録できる" do
+    it "discoveryのshowページからコメントをお気に入り登録できる", js: true do
       comment = FactoryBot.create(:comment)
       test_log_in(user)
       visit discovery_path(comment.discovery)
       expect {
-        find(".c-favo").click
+        page.all(".i-favo")[1].click
+        sleep 0.5
       }.to change(Favorite, :count).by(1)
       expect(current_path).to eq discovery_path(comment.discovery)
       expect(user.favorite_comment?(comment)).to be_truthy
     end
 
-    it "discoveryのshowページからコメントのお気に入りを解除できる" do
+    it "discoveryのshowページからコメントのお気に入りを解除できる", js: true do
       comment = FactoryBot.create(:comment)
       test_log_in(user)
       user.favorite_comment(comment)
       visit discovery_path(comment.discovery)
       expect {
-        find(".c-unfavo").click
+        find(".i-unfavo").click
+        sleep 0.5
       }.to change(Favorite, :count).by(-1)
       expect(current_path).to eq discovery_path(comment.discovery)
       expect(user.favorite_comment?(comment)).to_not be_truthy

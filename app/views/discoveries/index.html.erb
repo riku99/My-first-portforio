@@ -36,11 +36,13 @@
         <% end %>
 
         <% if logged_in? %>
-          <% if current_user.favorite?(d) %>
-            <%= render "shared/unfavorite", {object: d, page: "index", favorite_view: "i-unfavo"} %>
-          <% else %>
-            <%= render "shared/favorite", {object: d, page: "index", favorite_view: "i-favo"} %>
-          <% end %>
+          <div id="favorite-<%= d.id %>">
+            <% if current_user.favorite?(d) %>
+              <%= render "shared/unfavorite", { object: d } %>
+            <% else %>
+              <%= render "shared/favorite", { object: d } %>
+            <% end %>
+          </div>
         <% end %>
 
         <% if logged_in? %>

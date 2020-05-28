@@ -1,0 +1,5 @@
+<% if @discovery.present? %>
+$("#favorite-<%= @discovery.id %>").html("<%= escape_javascript(render('shared/unfavorite', object: @discovery)) %>");
+<% else %>
+$("#favorite-comment-<%= @comment.id %>").html("<%= escape_javascript(render('shared/unfavorite_come', { object: @comment, comment: 'comment'})) %>");
+<% end %>

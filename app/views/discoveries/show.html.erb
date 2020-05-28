@@ -33,11 +33,13 @@
         </div>
 
         <% if logged_in? %>
-          <% if current_user.favorite?(@discovery) %>
-            <%= render "shared/unfavorite", {object: @discovery, page: "show", favorite_view: "s-unfavo"} %>
-          <% else %>
-            <%= render "shared/favorite", {object: @discovery, page: "show", favorite_view: "s-favo"} %>
-          <% end %>
+          <div id="favorite-<%= @discovery.id %>">
+            <% if current_user.favorite?(@discovery) %>
+              <%= render "shared/unfavorite", object: @discovery %>
+            <% else %>
+              <%= render "shared/favorite", { object: @discovery } %>
+            <% end %>
+          </div>
           <%= link_to(new_comment_path(params: { discovery_id: @discovery.id} ), class: "comment-view") do %>
           <i class="fa fa-comment"></i>
           <span class="comment-count"><%= @discovery.comments.count %></span>
@@ -79,11 +81,13 @@
       <% end %>
 
       <% if logged_in? %>
-        <% if current_user.favorite_comment?(c) %>
-          <%= render "shared/unfavorite_come", { object: c, comment: "come", favorite_view: "c-unfavo", page: "discovery" } %>
-        <% else %>
-          <%= render "shared/favorite_come", { object: c, comment: "come", favorite_view: "c-favo", page: "discovery" } %>
-        <% end %>
+        <div id="favorite-comment-<%= c.id %>">
+          <% if current_user.favorite_comment?(c) %>
+            <%= render "shared/unfavorite_come", {object: c, comment: "comment"} %>
+          <% else %>
+            <%= render "shared/favorite_come", { object: c, comment: "comment"} %>
+          <% end %>
+        </div>
 
         <%= link_to(new_comment_path(params: {forcomment_id: c.id}), class: "comment-view") do %>
         <i class="fa fa-comment"></i>

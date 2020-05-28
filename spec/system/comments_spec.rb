@@ -7,7 +7,7 @@ require 'rails_helper'
       test_log_in(user)
       discovery
       visit discoveries_path
-      find(".fa-comment").click
+      find(".comment-view").click
       expect(current_path).to eq new_comment_path
       fill_in "コメントをしよう！", with: "test comment"
 
@@ -41,26 +41,28 @@ require 'rails_helper'
       expect(current_path).to eq discovery_path(discovery)
     end
 
-    it "コメントのshow画面からコメントをお気に入り登録できる", retry: 3 do  # retryでランダムに落ちるテストを数回実行
+    it "コメントのshow画面からコメントをお気に入り登録できる", retry: 5 do  # retryでランダムに落ちるテストを数回実行
       comment = FactoryBot.create(:comment)
       test_log_in(user)
       visit discovery_path(comment.discovery)
       click_link "comment-content-link"
       expect {
-        find(".c-favo").click
-        expect(current_path).to eq comment_path(comment)
+        find(".i-favo").click
+        sleep 0.5
       }.to change(Favorite, :count).by(1)
+      expect(current_path).to eq comment_path(comment)
       expect(user.favorite_comment?(comment)).to be_truthy
     end
 
-    it "コメントのshow画面からコメントのお気に入りを解除できる", retry: 3 do
+    it "コメントのshow画面からコメントのお気に入りを解除できる", retry: 5 do
       comment = FactoryBot.create(:comment)
       test_log_in(user)
       user.favorite_comment(comment)
       visit discovery_path(comment.discovery)
       click_link "comment-content-link"
       expect {
-        find(".c-unfavo").click
+        find(".i-unfavo").click
+        sleep 0.5
       }.to change(Favorite, :count).by(-1)
       expect(current_path).to eq comment_path(comment)
       expect(user.favorite_comment?(comment)).to_not be_truthy
@@ -72,7 +74,7 @@ require 'rails_helper'
       visit discoveries_path
       click_link "content-link"
       visit current_path    #なぜか一旦更新しないとコメントを見つけられないので更新
-      page.all(".fa-comment")[1].click
+      page.all(".comment-view")[1].click
       fill_in "コメントをしよう！", with: "コメント"
       expect {
         click_button "post"

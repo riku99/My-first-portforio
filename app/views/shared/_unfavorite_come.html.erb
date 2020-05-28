@@ -1,9 +1,8 @@
-<div class="favorite">
-  <%= form_for(current_user.favorites.find_by(comment_id: object.id), html: { method: :delete }) do |f| %>
+
+  <%= form_for(current_user.favorites.find_by(comment_id: object.id), html: { method: :delete }, remote: true) do |f| %>
   <%= hidden_field_tag :comment, comment %>
-  <%= hidden_field_tag :page, page %>
-  <%= f.button :type => "submit", style: 'border-style: none;', class: favorite_view do %>
+  <%= f.button :type => "submit", style: 'border-style: none;', class: "i-unfavo" do %>
   <i class="fa fa-star"></i>
+  <span class="favorite-count"><%= object.favorites.count %></span>
   <% end %>
   <% end %>
-</div>
