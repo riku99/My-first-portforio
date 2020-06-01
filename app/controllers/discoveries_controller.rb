@@ -7,7 +7,7 @@ class DiscoveriesController < ApplicationController
 
   def show
     @discovery = Discovery.find(params[:id])
-    @comment = Comment.where(discovery_id: @discovery)
+    @comments = Comment.where(discovery_id: @discovery)
   end
 
   def new

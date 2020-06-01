@@ -20,6 +20,17 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @discoveries = @user.discoveries
+  end
+
+  def change_to_comment
+    user = User.find(params[:id])
+    @comments = user.comments
+  end
+
+  def change_to_discovery
+    user = User.find(params[:id])
+    @discoveries = user.discoveries
   end
 
   def edit
@@ -51,7 +62,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  
+
 
   private
 

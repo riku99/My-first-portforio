@@ -20,6 +20,8 @@ RSpec.configure do |config|
     driven_by :selenium_chrome_headless
   end
 
+  Capybara.default_max_wait_time = 5
+
   # rpsecのリトライが指定されているテストでで失敗した場合にメッセージとステイタスを返す
   config.verbose_retry = true
   config.display_try_failure_messages = true

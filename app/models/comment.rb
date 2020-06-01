@@ -1,7 +1,7 @@
 class Comment < ApplicationRecord
   has_many :favorites, dependent: :destroy
-  has_many :favo_user, through: :favorites, source: :user
-  has_many :forcomments, class_name: "Comment", foreign_key: "forcomment_id"
+  has_many :favo_user, through: :favorites, source: :user, dependent: :destroy
+  has_many :forcomments, class_name: "Comment", foreign_key: "forcomment_id", dependent: :destroy
 
   belongs_to :user
   belongs_to :discovery, optional: true

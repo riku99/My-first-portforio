@@ -22,10 +22,10 @@ button {
 }
 
 header {
-  height: 50px;
+  height: 6%;
   width: 100%;
   background-color: white;
-  padding-bottom: 10px;
+  padding-bottom: 1%;
   border-bottom: 1px solid #bfbfc6;
   position: fixed;
   top: 0;
@@ -43,7 +43,7 @@ header {
 }
 
 footer {
-  height: 50px;
+  height: 6%;
   width: 100%;
   background-color: white;
   border-top: 1px solid #bfbfc6;

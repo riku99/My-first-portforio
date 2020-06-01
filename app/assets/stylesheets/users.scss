@@ -38,13 +38,13 @@
   background-color: white;
   width: 100%;
   height: 94vh;
-  padding-bottom: 65px;
-  overflow: scroll;
 }
 
 .user-profile-main {
   border-bottom: solid 1px rgb(241, 241, 241);
   padding-bottom: 20px;
+  height: 50%;
+  overflow: scroll;
 }
 
 .user-id {
@@ -71,7 +71,7 @@
   text-align: center;
   margin-top: 90px;
   width: 250px;
-  margin-left: 260px;
+  margin-left: 100px;
 }
 
 #following-count {
@@ -84,21 +84,6 @@
   margin-top: 110px;
   margin-left: 60px;
   text-align: center;
-}
-
-.user-target-score {
-  float: left;
-  margin-top: 110px;
-  margin-left: 40px;
-  text-align: center;
-}
-
-.label-score {
-  font-weight: bold;
-}
-
-.label-target-score {
-  font-weight: bold;
 }
 
 .user-name {
@@ -118,12 +103,36 @@
   text-align: center;
 }
 
+.feed-select {
+  margin: 0 auto;
+  margin-top: 10px;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: solid 1px #f1f1f1;
+  padding-bottom: 10px;
+}
+
+.feed-select-link {
+  color: #2c3e50;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+#user-feed {
+  height: 43%;
+  overflow: scroll;
+}
+
 .edit-profile-link {
   display: block;
   text-align: center;
-  margin-top: 35px;
   text-decoration: none;
   color: rgb(0, 133, 255);
+  font-size: 13px;
+  position: fixed;
+  top: 46%;
+  padding-left: 370px;
 }
 
 .user-edit-wrapper {
@@ -257,18 +266,18 @@ background-color: rgb(227, 227, 227);
 .following-user {
   background-color: white;
   width: 500px;
-  height: 100vh;
+  height: 87%;
   margin: 0 auto;
-  margin-top: 60px;
-  padding-top: 10px;
   overflow: scroll;
+  position: absolute;
+  top: 7%;
 }
 
 .following {
   width: 430px;
   min-height: 55px;
   margin: 0 auto;
-  margin-top: 10px;
+  margin-top: 20px;
   padding-bottom: 20px;
   border-bottom: solid 1px rgb(219, 219, 219);
   position: relative;

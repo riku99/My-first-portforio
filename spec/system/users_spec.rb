@@ -48,7 +48,6 @@ describe "Users", type: :system do
     end
   end
 
-
   it "showページで正しい値、デフオルトの画像が表示されている" do
     user = FactoryBot.build(:user)
     user.image = nil
@@ -123,7 +122,7 @@ describe "Users", type: :system do
     expect(page).to have_content "他のユーザーは編集できません"
   end
 
-  it "showページでユーザーをフォローしていない場合はフォローボタンが表示され、フォローできること", js: true do
+  it "showページでユーザーをフォローしていない場合はフォローボタンが表示され、フォローできること" do
     using_wait_time(5) do
     second_user.save
     test_log_in(user)
@@ -138,7 +137,7 @@ describe "Users", type: :system do
   end
   end
 
-  it "showページでユーザーをフォローしている場合はフォロー中ボタンが表示され、フォロー解除できること", js: true do
+  it "showページでユーザーをフォローしている場合はフォロー中ボタンが表示され、フォロー解除できること" do
     using_wait_time(5) do
     second_user.save
     test_log_in(user)
@@ -172,7 +171,7 @@ describe "Users", type: :system do
     expect(current_path).to eq login_path
   end
 
-  it "フォロー一覧ページでフォローしてないユーザーをフォローでき、ページを移動しないこと", js: true do
+  it "フォロー一覧ページでフォローしてないユーザーをフォローでき、ページを移動しないこと" do
     second_user.save
     third_user = FactoryBot.create(:user)
     test_log_in(user)
@@ -186,7 +185,7 @@ describe "Users", type: :system do
     expect(current_path).to eq following_user_path(second_user)
   end
 
-  it "フォロー一覧ページでフォローしているユーザーをアンフォローでき、ページを移動しないこと", js: true do
+  it "フォロー一覧ページでフォローしているユーザーをアンフォローでき、ページを移動しないこと" do
     second_user.save
     third_user = FactoryBot.create(:user)
     test_log_in(user)

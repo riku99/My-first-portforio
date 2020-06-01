@@ -51,6 +51,15 @@
           <% end %>
         </div>
       </div>
+
+      <div class="feed-select">
+        <%= link_to "Your post", change_to_discovery_user_path, class: "feed-select-link", remote: true %>
+        <%= link_to "Your comment", change_to_comment_user_path, class: "feed-select-link", remote: true %>
+      </div>
+      <div id="user-feed">
+        <%= render "user_discovery" %>
+      </div>
+
     </div>
   </div>
 </div>

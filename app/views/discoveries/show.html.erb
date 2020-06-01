@@ -51,12 +51,15 @@
       <% end %>
     </div>
 
-    <% if @comment %>
+    <% if @comments %>
       <p class="comment-logo">
         コメント
       </p>
-      <% @comment.each do |c| %>
+      <% @comments.each do |c| %>
         <div class="discovery come">
+          <div class="comment-partner">
+            <%= link_to "@#{c.discovery.user.acount_id}への返信", user_path(c.discovery.user), class: "comment-partner-link" %>
+          </div>
           <%= link_to(user_path(c.user), id: "discovery-profile-link",) do %>
           <div class="discovery-profile">
             <% if c.user.image.attached? %>
