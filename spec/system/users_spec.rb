@@ -1,7 +1,7 @@
 require 'rails_helper'
 describe "Users", type: :system do
   let(:user) { FactoryBot.create(:user) }
-  let(:second_user) { FactoryBot.build(:user, :second_user) }
+  let(:second_user) { FactoryBot.create(:user, :second_user) }
 
   it "有効なデータを入力し、ユーザーが作成され、表示されるリンクが変わる" do
     user = FactoryBot.build(:user)
@@ -119,7 +119,7 @@ describe "Users", type: :system do
     test_log_in(user)
     visit edit_user_path(second_user)
     expect(current_path).to eq root_path
-    expect(page).to have_content "他のユーザーは編集できません"
+    expect(page).to have_css ".danger"
   end
 
   it "showページでユーザーをフォローしていない場合はフォローボタンが表示され、フォローできること" do
@@ -152,7 +152,7 @@ describe "Users", type: :system do
   end
   end
 
-  it "フォロー中一覧ページでフォロー中のユーザーが表示されていること" do
+  it "フォロー中一覧ページ(followingページ)でフォロー中のユーザーが表示されていること" do
     second_user.save
     test_log_in(user)
     user.follow(second_user)
@@ -167,7 +167,23 @@ describe "Users", type: :system do
     second_user.save
     visit user_path(user)
     click_link "following-count"
-    visit current_path    # リロードする
+    expect(page).to have_selector ".danger", text: "ログインしてください"
+    expect(current_path).to eq login_path
+  end
+
+  it "フォロワー一覧ページ(followersページ)でフォロワーが表示される" do
+    second_user.follow(user)
+    test_log_in(user)
+    click_link "follower-count"
+    expect(page).to have_content second_user.name
+    expect(page).to have_content second_user.acount_id
+  end
+
+  it "ログインしてなければfollowersページは表示されずログインページにリダイレクトされる" do
+    second_user.follow(user)
+    visit user_path(user)
+    click_link "follower-count"
+    expect(page).to have_selector ".danger", text: "ログインしてください"
     expect(current_path).to eq login_path
   end
 
@@ -198,5 +214,23 @@ describe "Users", type: :system do
       sleep 0.5
     }.to change(Relationship, :count).by(-1)
     expect(current_path).to eq following_user_path(second_user)
+  end
+
+  it "feedページで自分とフォローしているユーザーのDiscoveryが表示される" do
+    test_log_in(user)
+    discovery = FactoryBot.create(:discovery, user: user, content: "userの投稿です")
+    user.follow(second_user)
+    second_discovery = FactoryBot.create(:discovery, user: second_user, content: "second_userの投稿です")
+    visit user_path(user)
+    click_link "Following users post"
+    expect(page).to have_content "userの投稿です"
+    expect(page).to have_content "second_userの投稿です"
+  end
+
+  it "ログインユーザーと違うユーザーのfeedページは表示できずにホーム画面にリダイレクトされる" do
+    test_log_in(user)
+    visit feed_user_path(second_user)
+    expect(page).to have_css ".danger"
+    expect(current_path).to eq root_path
   end
 end

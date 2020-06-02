@@ -21,6 +21,7 @@
       <div class="header-link-box">
         <ul>
           <% if logged_in? %>
+          <li><%= link_to "Following users post", feed_user_path(current_user), class: "feed-select-link" %></li>
           <li><%= link_to "ログアウト", logout_path, method: :delete, data: {confirm: "ログアウトしますか?"}, class: "header-link h-logout" %></li>
           <% else %>
           <li><%= link_to "ログイン", login_path, class: "header-link h-login" %></li>

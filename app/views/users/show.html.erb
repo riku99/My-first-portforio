@@ -27,14 +27,27 @@
             <% end %>
           <% end %>
           <div class="following-status">
+
+            <div class="fing-status" >
             <div class="following-label">
               <span>フォロー中</span>
             </div>
-            <%= link_to(following_user_path(@user), id: "following-count") do %>
+            <%= link_to(following_user_path, id: "following-count") do %>
             <div id="following-count">
               <%= @user.following.count %>
             </div>
           <% end %>
+          </div>
+
+          <div class="wer-status">
+          <span>フォロワー</span>
+          <%= link_to(followers_user_path, id: "follower-count") do %>
+            <div id="followers-count">
+              <%= @user.followers.count %>
+            </div>
+          <% end %>
+          </div>
+
         </div>
         <div class="user-name"><%= @user.name %></div>
         <% if @user.introduce %>
@@ -53,8 +66,9 @@
       </div>
 
       <div class="feed-select">
-        <%= link_to "Your post", change_to_discovery_user_path, class: "feed-select-link", remote: true %>
-        <%= link_to "Your comment", change_to_comment_user_path, class: "feed-select-link", remote: true %>
+        <div><%= link_to "Your post", change_to_discovery_user_path, class: "feed-select-link", remote: true %></div>
+        <div><%= link_to "Your comment", change_to_comment_user_path, class: "feed-select-link", remote: true %></div>
+        <div><%= link_to "Favorite", favorite_user_path, class: "feed-select-link", remote: true %></div>
       </div>
       <div id="user-feed">
         <%= render "user_discovery" %>

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
-  let(:user) { FactoryBot.build(:user) }
-  let(:second_user) { FactoryBot.build(:user, :second_user) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:second_user) { FactoryBot.create(:user, :second_user) }
 
   before do
     @base_title = "TOEICer Hiroba"
@@ -22,15 +22,6 @@ RSpec.describe "Users", type: :request do
         post users_path, params: { user: FactoryBot.attributes_for(:user) }
         expect(is_logged_in?).to be_truthy  #ログイン状態になっているかテスト
       end
-    end
-  end
-
-  describe "GET user_path" do
-    it "正しいレスポンスを返す" do
-      log_in_as
-      get user_path(user)
-      expect(response).to have_http_status(:success)
-      assert_select "title", "Show-profile | #{@base_title}"
     end
   end
 

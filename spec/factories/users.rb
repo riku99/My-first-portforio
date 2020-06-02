@@ -25,8 +25,6 @@ FactoryBot.define do
       name { "riku" }
       email { "rikusecond@example.com" }
       acount_id { "secondriku" }
-      score { 770 }
-      target_score { 900 }
       password { "foobar" }
       password_confirmation { "foobar" }
       introduce { "hello2" }

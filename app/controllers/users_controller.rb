@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :user_logged_in?, only: [:edit, :update, :imgd, :destroy, :following, :followers]
-  before_action :correct_user?, only: [:edit, :update, :imgd]
+  before_action :user_logged_in?, only: [:edit, :update, :imgd, :destroy, :following, :followers, :feed]
+  before_action :correct_user?, only: [:edit, :update, :imgd, :feed]
   before_action :user_admin?, only: [:destroy]
 
   def new
@@ -33,6 +33,16 @@ class UsersController < ApplicationController
     @discoveries = user.discoveries
   end
 
+  def feed
+    following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
+    @discoveries = Discovery.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: current_user.id)
+  end
+
+  def favorite
+    user = User.find(params[:id])
+    @discoveries = user.favo_discovery
+  end
+
   def edit
     # before_actionでインスタンス変数を作るのでここでは作らない
   end
@@ -62,6 +72,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def followers
+    @user = User.find(params[:id])
+  end
+
 
 
   private
@@ -82,7 +96,7 @@ class UsersController < ApplicationController
   def correct_user?
     @user = User.find(params[:id])
     unless @user == @current_user
-      flash[:danger] = "他のユーザーは編集できません"
+      flash[:danger] = "ログインユーザーと違います"
       redirect_back(fallback_location: root_path)
     end
   end
@@ -91,7 +105,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     unless current_user.admin?
       flash[:danger] = "削除できません"
-      redirect_to user_path(user)
+      redirect_to root_path
     end
   end
 

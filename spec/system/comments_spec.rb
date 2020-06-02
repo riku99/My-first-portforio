@@ -24,11 +24,9 @@ require 'rails_helper'
       expect(current_path).to eq login_path
     end
 
-    it "ログイン済みでかつコメントがそのユーザーのコメントの場合削除できる" do
+    it "ログイン済みでかつコメントがそのユーザーのコメントの場合削除できる", focus: true do
       c_user = FactoryBot.create(:user, :with_comment)
       discovery = c_user.comments.first.discovery
-      #puts c_user.comments.inspect
-      #puts c_user.comments.first.discovery.inspect
       test_log_in(c_user)
       visit discoveries_path
       click_link "content-link"

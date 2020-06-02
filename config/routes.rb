@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'homepages#home'
   resources :users do
     member do
-      get :following, :followers, :change_to_comment, :change_to_discovery   #users/:id/following, users/:id/followersを使えるようになる
+      get :following, :followers, :change_to_comment, :change_to_discovery, :feed, :favorite   #users/:id/following, users/:id/followersを使えるようになる
     end
   end
   resources :discoveries
