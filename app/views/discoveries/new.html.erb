@@ -8,7 +8,7 @@
     <div class="discovery-form">
       <%= form_for(@discovery) do |f| %>
         <%= f.text_area :content, class: "content-form", placeholder: "勉強して気づいたこと、発見したことをなんでも投稿しよう！" %>
-        <%= f.submit "Post", class: "create-link" %>
+        <%= f.submit "Post", class: "create-link", "v-on:click" => "info_notice()" %>
       <% end %>
     </div>
   </div>

@@ -4,7 +4,9 @@
       <div class="user-profile">
         <div class="user-profile-main">
           <div class="user-id"><%= @user.acount_id %></div>
+          <div id="app">
 
+          </div>
           <% if @user.image.attached? %>
             <div class="user-image">
               <%= image_tag @user.image.variant(resize_to_fill: [120, 120]), class: "image" %>
@@ -76,5 +78,7 @@
 
     </div>
   </div>
-</div>
+  </div>
 <footer></footer>
+
+<%= javascript_pack_tag 'hello_vue' %>

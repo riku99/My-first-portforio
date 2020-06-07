@@ -7,6 +7,8 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- htmlが読み込まれる前にmenuが読み込まれるとエラーになるのでdeferを指定する -->
+  
 
     <title><%= full_title(yield(:title)) %></title>
 
@@ -18,20 +20,13 @@
       <div class="logo-title">
           <span>ELH</span>
       </div>
-      <div class="header-link-box">
-        <ul>
           <% if logged_in? %>
-          <li><%= link_to "Following users post", feed_user_path(current_user), class: "feed-select-link" %></li>
-          <li><%= link_to "ログアウト", logout_path, method: :delete, data: {confirm: "ログアウトしますか?"}, class: "header-link h-logout" %></li>
-          <% else %>
-          <li><%= link_to "ログイン", login_path, class: "header-link h-login" %></li>
+            <div id="side_menu_zone"></div>
           <% end %>
-        </ul>
-      </div>
     </header>
     <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
+      <%= content_tag(:div, value, class: key) %>
     <% end %>
-    <%= yield %>
+      <%= yield %>
   </body>
 </html>

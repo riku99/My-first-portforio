@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
   delete '/imgd/:id', to: "users#imgd", as: "imgd"
+  get '/api/users/current_user', to: "api/users#current_user"
 end

@@ -116,11 +116,12 @@ li {
   margin-right: 50px;
 }
 
-.info {
-  position: fixed;
+#info {
+  position: absolute;
   bottom: 60px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   background-color: rgba(255, 174, 0, 0.51);
   width: 30%;
   padding: 7px 0;
@@ -197,4 +198,16 @@ li {
 
 .comment-count {
   font-size: 12px;
+}
+
+.ya-leave {
+  opacity: 1;
+}
+
+.ya-leave-active {
+  transition: 0.5s;
+}
+
+.ya-leave-to {
+  transform: translateY(100px);
 }
