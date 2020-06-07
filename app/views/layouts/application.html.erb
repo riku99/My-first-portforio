@@ -5,10 +5,10 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
     <!-- htmlが読み込まれる前にmenuが読み込まれるとエラーになるのでdeferを指定する -->
-  
+    <%= javascript_pack_tag 'menu', defer: "defer"%>
 
     <title><%= full_title(yield(:title)) %></title>
 
@@ -22,6 +22,8 @@
       </div>
           <% if logged_in? %>
             <div id="side_menu_zone"></div>
+          <% else %>
+            <%= link_to "ログイン", login_path, class: "header-link h-login" %>
           <% end %>
     </header>
     <% flash.each do |key, value| %>

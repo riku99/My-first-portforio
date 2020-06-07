@@ -7,17 +7,11 @@
 
 // import Vue from 'vue'
 import Vue from 'vue/dist/vue.esm'
-import App from '../app.vue'
-import router from './router'
+import SelectLink from '../select_link.vue'
+//import router from './router'
 
 // helloというノードを作成している
 //document.body.appendChild(document.createElement('hello'))
-
-var app = new Vue({
-  el: '#app',
-  render: h => h(App),
-  router: router
-})
 
 
 // The above code uses Vue without the compiler, which means you cannot

@@ -6,10 +6,7 @@ describe "Users", type: :system do
   it "有効なデータを入力し、ユーザーが作成され、表示されるリンクが変わる" do
     user = FactoryBot.build(:user)
     visit new_user_path
-    within '.header-link-box' do
-      expect(page).to have_content "ログイン"
-      expect(page).to_not have_content "ログアウト"
-    end
+    expect(page).to have_content "ログイン"
     expect {
       fill_in "User_id", with: user.acount_id
       fill_in "Email", with: user.email
@@ -20,20 +17,13 @@ describe "Users", type: :system do
     expect(page).to have_content "アカウントを登録しました"
     user = User.last
     expect(current_path).to eq user_path(user)
-    # header-link-boxの中の内容が変わっているかテスト
-    within '.header-link-box' do
-      expect(page).to_not have_content "ログイン"
-      expect(page).to have_content "ログアウト"
-    end
+    expect(page).to have_css ".menu_button"
   end
 
   it "無効なデータを入力し、ユーザが作成されず、表示されるリンクが変わらない" do
     user = FactoryBot.build(:user)
     visit new_user_path
-    within '.header-link-box' do
-      expect(page).to have_content "ログイン"
-      expect(page).to_not have_content "ログアウト"
-    end
+    expect(page).to have_content "ログイン"
     expect {
       fill_in "User_id", with: user.acount_id
       fill_in "Email", with: nil
@@ -42,10 +32,8 @@ describe "Users", type: :system do
       click_button "登録する"
     }.to_not change(User, :count)
     expect(page).to have_css '.errors'
-    within '.header-link-box' do
-      expect(page).to have_content 'ログイン'
-      expect(page).to_not have_content 'ログアウト'
-    end
+    expect(page).to have_content "ログイン"
+    expect(page).to_not have_css ".menu_button"
   end
 
   it "showページで正しい値、デフオルトの画像が表示されている" do
@@ -222,7 +210,8 @@ describe "Users", type: :system do
     user.follow(second_user)
     second_discovery = FactoryBot.create(:discovery, user: second_user, content: "second_userの投稿です")
     visit user_path(user)
-    click_link "Following users post"
+    find(".menu_button").click
+    click_link "Following User Posts"
     expect(page).to have_content "userの投稿です"
     expect(page).to have_content "second_userの投稿です"
   end

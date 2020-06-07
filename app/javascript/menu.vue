@@ -5,8 +5,12 @@
       <button class="close_menu_button" v-on:click="display_menu">
         <font-awesome-icon icon="times"></font-awesome-icon>
       </button>
-      <a v-bind:href="'/users/' + current_user + '/feed'">フォロー中ユーザーの投稿</a>
-      <a data-method="delete" href="/logout">logout</a>
+      <div class="menu-select-link-box">
+        <a v-bind:href="'/users/' + current_user + '/feed'" class="menu-select-link">Following User Posts</a>
+      </div>
+      <div class="menu-select-link-box">
+        <a data-method="delete" href="/logout" class="menu-select-link" data-confirm="ログアウトしますか?">Logout</a>
+      </div>
     </div>
     </transition>
     <button class="menu_button" v-if="!menu_present" v-on:click="display_menu">
@@ -43,12 +47,13 @@
 <style>
   .side_menu {
     width: 300px;
-    height: 100%;
+    height: 50%;
     background-color: white;
     position: fixed;
     right: 0;
     z-index: 10;
     border-left: 1px solid #bfbfc6;
+    border-bottom: 1px solid #bfbfc6;
   }
 
   .menu_button {
@@ -64,11 +69,24 @@
   }
 
   .close_menu_button {
-  background: transparent;
-  border: none;
-  outline: 0;
-  font-size: 20px;
-  color: rgba(255, 191, 0, 0.8);
+    background: transparent;
+    border: none;
+    outline: 0;
+    font-size: 20px;
+    color: rgba(255, 191, 0, 0.8);
+  }
+
+  .menu-select-link-box {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .menu-select-link {
+    color: #2c3e50;
+    padding: 5px;
+    border-radius: 30px;
   }
 
   .menu_appearance-enter {

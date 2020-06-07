@@ -1,12 +1,14 @@
+<head>
+  <%= javascript_pack_tag 'select_link', defer: "defer" %>
+</head>
+
 <% provide(:title, "Show-profile") %>
   <div class="user-show-wrapper">
     <div class="user-show-container">
       <div class="user-profile">
         <div class="user-profile-main">
           <div class="user-id"><%= @user.acount_id %></div>
-          <div id="app">
 
-          </div>
           <% if @user.image.attached? %>
             <div class="user-image">
               <%= image_tag @user.image.variant(resize_to_fill: [120, 120]), class: "image" %>
@@ -67,11 +69,10 @@
         </div>
       </div>
 
-      <div class="feed-select">
-        <div><%= link_to "Your post", change_to_discovery_user_path, class: "feed-select-link", remote: true %></div>
-        <div><%= link_to "Your comment", change_to_comment_user_path, class: "feed-select-link", remote: true %></div>
-        <div><%= link_to "Favorite", favorite_user_path, class: "feed-select-link", remote: true %></div>
+      <div id="select">
+
       </div>
+
       <div id="user-feed">
         <%= render "user_discovery" %>
       </div>
@@ -80,5 +81,3 @@
   </div>
   </div>
 <footer></footer>
-
-<%= javascript_pack_tag 'hello_vue' %>

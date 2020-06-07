@@ -90,7 +90,7 @@ require 'rails_helper'
       expect(page).to_not have_css ".fa fa-star"
     end
 
-    it "お気に入りボタンを押し、お気に入りに登録できる", js: true do
+    it "お気に入りボタンを押し、お気に入りに登録できる" do
       discovery.save
       test_log_in(user)
       visit discoveries_path
@@ -102,7 +102,7 @@ require 'rails_helper'
       expect(user.favorite?(discovery)).to be_truthy
     end
 
-    it "お気に入り解除ボタンを押し、お気に入りの登録を解除できる", js: true do
+    it "お気に入り解除ボタンを押し、お気に入りの登録を解除できる" do
       discovery.save
       test_log_in(user)
       user.favo(discovery)
@@ -115,7 +115,7 @@ require 'rails_helper'
       expect(user.favorite?(discovery)).to_not be_truthy
     end
 
-    it "discoveryのshowページからコメントをお気に入り登録できる", js: true do
+    it "discoveryのshowページからコメントをお気に入り登録できる" do
       comment = FactoryBot.create(:comment)
       test_log_in(user)
       visit discovery_path(comment.discovery)
@@ -127,7 +127,7 @@ require 'rails_helper'
       expect(user.favorite_comment?(comment)).to be_truthy
     end
 
-    it "discoveryのshowページからコメントのお気に入りを解除できる", js: true do
+    it "discoveryのshowページからコメントのお気に入りを解除できる" do
       comment = FactoryBot.create(:comment)
       test_log_in(user)
       user.favorite_comment(comment)

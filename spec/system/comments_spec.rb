@@ -24,7 +24,7 @@ require 'rails_helper'
       expect(current_path).to eq login_path
     end
 
-    it "ログイン済みでかつコメントがそのユーザーのコメントの場合削除できる", focus: true do
+    it "ログイン済みでかつコメントがそのユーザーのコメントの場合削除できる", retry: 3 do
       c_user = FactoryBot.create(:user, :with_comment)
       discovery = c_user.comments.first.discovery
       test_log_in(c_user)
