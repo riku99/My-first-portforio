@@ -61,7 +61,7 @@ describe "Users", type: :system do
     expect(page).to have_css '.image'
   end
 
-  it "編集で有効なデータを入力し、更新される" do
+  it "編集で有効なデータを入力し、更新される", focus: true do
     user.image = nil
     test_log_in(user)
     visit user_path(user)
@@ -80,7 +80,7 @@ describe "Users", type: :system do
     expect(page).to have_content "更新しました"
   end
 
-  it "編集ページで無効なデータを入力し、更新されない" do
+  it "編集ページで無効なデータを入力し、更新されない", retry: 5 do
     test_log_in(user)
     visit user_path(user)
     click_link "プロフィールを編集"
@@ -92,7 +92,7 @@ describe "Users", type: :system do
     expect(page).to have_css '.errors'
   end
 
-  it "編集ページで画像を削除できること" do
+  it "編集ページで画像を削除できること", retry: 5 do
     test_log_in(user)
     visit edit_user_path(user)
     click_link "プロフィール画像を削除"

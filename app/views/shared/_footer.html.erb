@@ -1,0 +1,16 @@
+<footer>
+  <% if logged_in? %>
+  <div class="footer-link-box">
+    <%= link_to(feed_user_path(current_user)) do %>
+      <div class="footer-link"><i class="fa fa-home"></i></div>
+    <% end %>
+    <%= link_to(discoveries_path) do %>
+      <div class="footer-link"><i class="fa fa-search"></i></div>
+    <% end %>
+
+    <%= link_to(user_path(current_user)) do %>
+      <div class="footer-link"><i class="fa fa-user"></i></div>
+    <% end %>
+  </div>
+  <% end %>
+</footer>

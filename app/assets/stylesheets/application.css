@@ -52,6 +52,21 @@ footer {
   z-index: 10;
 }
 
+.footer-link-box {
+  width: 500px;
+  display: flex;
+  justify-content: space-evenly;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.footer-link {
+  color: rgba(255, 191, 0, 0.8);
+  font-size: 30px;
+}
+
 .main-wrapper {
   width: 100%;
 }
@@ -116,7 +131,7 @@ li {
   margin-right: 50px;
 }
 
-#info {
+.info {
   position: absolute;
   bottom: 60px;
   left: 0;

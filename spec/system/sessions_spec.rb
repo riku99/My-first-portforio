@@ -41,7 +41,7 @@ require 'rails_helper'
     end
 
 
-    it "ログアウトリンクをクリックし、ログアウトされる" do
+    it "ログアウトリンクをクリックし、ログアウトされる", retry: 5 do
       visit root_path
       click_link "ログイン"
       fill_in "User_id", with: user.acount_id

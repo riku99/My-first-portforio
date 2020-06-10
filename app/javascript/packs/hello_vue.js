@@ -13,6 +13,45 @@ import SelectLink from '../select_link.vue'
 // helloというノードを作成している
 //document.body.appendChild(document.createElement('hello'))
 
+var app = new Vue({
+  el: "#edit-image-zone",
+  data: {
+    user_image: "/assets/no-user.png"
+  },
+  methods: {
+    previewImage: function() {
+      var u = document.getElementById("u_n_image");
+      if(u) {
+        var i = document.getElementById("image_form")
+        var img = i.files[0];
+        const reader = new FileReader();
+        reader.onload = () => {
+        this.user_image = reader.result;
+        };
+        reader.readAsDataURL(img);
+      } else {
+        var i = document.getElementById("image_form");
+        var img = i.files[0];
+        const reader = new FileReader();
+          reader.onload = (event) => {
+            var url = reader.result;
+            var ele = document.getElementById('u_image');
+            ele.setAttribute('width', 120);
+            ele.setAttribute('height', 120);
+            ele.setAttribute('src', url);
+          };
+          reader.readAsDataURL(img);
+      }
+    },
+    deleteImage: function() {
+      var ele = document.getElementById('u_image');
+      var url = "/assets/no-user.png"
+      ele.setAttribute('width', 120);
+      ele.setAttribute('height', 120);
+      ele.setAttribute('src', url);
+    }
+  }
+})
 
 // The above code uses Vue without the compiler, which means you cannot
 // use Vue to target elements in your existing html templates. You would

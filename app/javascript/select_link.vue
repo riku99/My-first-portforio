@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="feed-select">
-      <a v-bind:href="`/users/ ${params_url} /change_to_discovery`" v-bind:class="select_back_dis" class="feed-select-link" v-on:click="select_back_color_dis" data-remote="true">Your post</a>
-      <a v-bind:href="`/users/ ${params_url} /change_to_comment`" v-bind:class="select_back_com" class="feed-select-link" v-on:click="select_back_color_com" data-remote="true">Your comment</a>
+      <a v-bind:href="`/users/ ${params_url} /change_to_discovery`" v-bind:class="select_back_dis" class="feed-select-link" v-on:click="select_back_color_dis" data-remote="true">Post</a>
+      <a v-bind:href="`/users/ ${params_url} /change_to_comment`" v-bind:class="select_back_com" class="feed-select-link" v-on:click="select_back_color_com" data-remote="true">Comment</a>
       <a v-bind:href="`/users/ ${params_url} /favorite`" v-bind:class="select_back_favo" class="feed-select-link" v-on:click="select_back_color_favo" data-remote="true">Favorite</a>
     </div>
   </div>
