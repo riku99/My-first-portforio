@@ -61,7 +61,7 @@ describe "Users", type: :system do
     expect(page).to have_css '.image'
   end
 
-  it "編集で有効なデータを入力し、更新される", focus: true do
+  it "編集で有効なデータを入力し、更新される" do
     user.image = nil
     test_log_in(user)
     visit user_path(user)

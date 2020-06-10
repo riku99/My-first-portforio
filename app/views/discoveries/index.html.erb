@@ -3,6 +3,12 @@
   <div class="discovery-index-wrapper">
     <div class="discovery-index-container">
       <div class="discovery-index">
+        <%= search_form_for @q do |f| %>
+          <%= f.search_field :content_cont, placeholder: "投稿を検索" %>
+          <%= f.button :type => "submit", class: "search-button" do %>
+            <i class="fa fa-search"></i>
+          <% end %>
+        <% end %>
         <% @discoveries.each do |d| %>
           <div class="discovery">
             <%= link_to(user_path(d.user), id: "discovery-profile-link") do %>

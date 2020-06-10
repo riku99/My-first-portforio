@@ -2,7 +2,8 @@ class DiscoveriesController < ApplicationController
   before_action :user_logged_in?, only: [:new, :create, :destroy]
   before_action :correct_owner?, only: [:destroy]
   def index
-    @discoveries = Discovery.all
+    @q = Discovery.ransack(params[:q])
+    @discoveries = @q.result(distinct: true)
   end
 
   def show

@@ -13,6 +13,8 @@ gem 'rails-i18n' #エラーメッセージの日本語化
 
 gem "aws-sdk-s3", require: false
 
+gem 'ransack'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
 # Use sqlite3 as the database for Active Record

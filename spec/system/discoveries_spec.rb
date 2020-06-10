@@ -140,4 +140,14 @@ require 'rails_helper'
       expect(user.favorite_comment?(comment)).to_not be_truthy
     end
 
+    it "検索した内容と一部合致したDiscoveryを表示する" do
+      test_log_in(user)
+      d = FactoryBot.create(:discovery, content: "今日も頑張った", user: user)
+      second_d = FactoryBot.create(:discovery, content: "明日も頑張ろう", user: user)
+      visit discoveries_path
+      fill_in "投稿を検索", with: "今日も"
+      first(".fa-search").click
+      expect(page).to have_content "今日も頑張った"
+      expect(page).to_not have_content "明日も頑張ろう"
+    end
   end

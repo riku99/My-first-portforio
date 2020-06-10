@@ -235,3 +235,24 @@
   text-align: center;
   line-height: 70px;
 }
+
+.discovery_search {
+  position: fixed;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#q_content_cont {
+  width: 200px;
+  height: 30px;
+  border: solid 1px #dbdbdb;
+  outline: 0;
+  border-radius: 20px;
+}
+
+.search-button {
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+}
