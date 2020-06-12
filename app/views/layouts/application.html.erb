@@ -8,7 +8,6 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
     <!-- htmlが読み込まれる前にmenuが読み込まれるとエラーになるのでdeferを指定する -->
-    <%= javascript_pack_tag 'menu', defer: "defer" %>
     <%= javascript_pack_tag 'flash', defer: "defer" %>
 
     <title><%= full_title(yield(:title)) %></title>
@@ -23,8 +22,7 @@
       </div>
           <% if logged_in? %>
             <div id="side_menu_zone"></div>
-          <% else %>
-            <%= link_to "ログイン", login_path, class: "header-link h-login" %>
+            <%= javascript_pack_tag 'menu', defer: "defer" %>
           <% end %>
     </header>
     <div id="flash_info">

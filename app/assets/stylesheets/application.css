@@ -19,6 +19,11 @@ a {
 
 button {
   outline: 0;    /* ボタンを押す際に発生するの青枠戦を消す */
+  border: none;
+}
+
+input {
+  border: none;
 }
 
 header {
@@ -168,46 +173,9 @@ li {
   color: red;
 }
 
-.signup-form {
-  width: 90%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-}
-
-.signup {
-  margin-top: 35px;
-  margin-left: 40px;
-}
-
-.signup-label {
-  display: block;
-  font-family: 'Chalkboard SE'
-}
-
-.signup-field {
-  border: none;
-  border-top: solid 1px rgb(219, 219, 219);
-  border-bottom: solid 1px rgb(219, 219, 219);
-  margin-top: 10px;
-  width: 300px;
-  height: 40px
-}
-
-.signup-button {
-  margin: 0 auto;
-  display: block;
-  margin-top: 10px;
-  font-size: 15px;
-  background-color: rgba(255, 191, 0, 0.8);
-  color: white;
-  font-family: 'Chalkboard SE';
-}
-
 .favorite-count {
+
+
   font-size: 12px;
 }
 

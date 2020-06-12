@@ -6,7 +6,7 @@
         <font-awesome-icon icon="times"></font-awesome-icon>
       </button>
       <div class="menu-select-link-box">
-        <a v-bind:href="'/users/' + current_user + '/feed'" class="menu-select-link">Following User Posts</a>
+        <a v-bind:href="'/users/' + current_user" class="menu-select-link">My Page</a>
       </div>
       <div class="menu-select-link-box">
         <a data-method="delete" href="/logout" class="menu-select-link" data-confirm="ログアウトしますか?">Logout</a>
