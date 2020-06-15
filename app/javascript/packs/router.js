@@ -1,7 +1,5 @@
 import Vue from 'vue/dist/vue.esm.js'
 import VueRouter from 'vue-router'
-import User from '../user.vue'
-
 Vue.use(VueRouter)
 
 const routes = [

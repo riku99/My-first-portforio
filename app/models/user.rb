@@ -34,6 +34,7 @@ class User < ApplicationRecord
   # has_secure_passwordは新しくレコードを追加する時のみpresenceが適用される
   # そのためupdateした際などで更新した際は適用されないため、validatesで記述する
   # allow_nilはupdateの際はpasswordを送らなくてもいいようにする
+  # またupdateの際はパスワード設定に対して空文字は弾きたいのでpresenceをtrueにしている
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   # Userひとつに1つの画像を紐付けること、その画像をUserからimageと呼ぶこと(インスタンスメソッド)を指定

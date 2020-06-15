@@ -5,7 +5,7 @@ class Comment < ApplicationRecord
 
   belongs_to :user
   belongs_to :discovery, optional: true
-  belongs_to :forcomment, class_name: "Comment", optional: true
+  belongs_to :forcomment, class_name: "Comment", foreign_key: "forcomment_id", optional: true
 
   validates :user_id, presence: true
   validates :discovery_or_forcomment, presence: true

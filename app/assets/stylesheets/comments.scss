@@ -58,3 +58,24 @@
   font-size: 13px;
   color: #b9b9b9;
 }
+
+@media(max-width: 415px) {
+  .comment-wrapper {
+    background-color: inherit;
+  }
+
+  .comment-container {
+    width: auto;
+    margin: 0;
+  }
+
+  .comment-new {
+    width: auto;
+  }
+
+  .comment {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 14%;
+  }
+}

@@ -49,3 +49,27 @@
   background-color: rgba(255, 191, 0, 0.8);
   color: white;
 }
+
+@media(max-width: 415px) {
+  .login-wrapper {
+    background-color: white;
+  }
+
+  .login-form {
+    width: 90%;
+  }
+
+  .login {
+    margin-left: 0;
+  }
+
+  .login-label {
+    margin-left: 30px;
+  }
+
+  .login-field {
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 250px;
+  }
+}

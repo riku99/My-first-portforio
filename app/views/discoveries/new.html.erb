@@ -1,16 +1,14 @@
 <% provide(:title, 'Create') %>
 
 <div class="new-wrapper">
-    <%= render 'shared/error_messages', object: @discovery %>
+  <%= render 'shared/error_messages', object: @discovery %>
   <div class="discovery-new-contaienr">
-    <div class="error_explanation">
-    </div>
     <div class="discovery-form">
       <%= form_for(@discovery) do |f| %>
         <%= f.text_area :content, class: "content-form", placeholder: "勉強して気づいたこと、発見したことをなんでも投稿しよう！" %>
-        <%= f.submit "Post", class: "create-link", "v-on:click" => "info_notice()" %>
+        <%= f.submit "Post", class: "create-link" %>
       <% end %>
     </div>
   </div>
 </div>
-<footer></footer>
+<%= render "shared/footer" %>

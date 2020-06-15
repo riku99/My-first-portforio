@@ -87,4 +87,30 @@
   .messe2-enter-to {
     opacity: 1;
   }
+
+  @media(max-width: 415px) {
+    .home_message {
+      font-size: 40px;
+    }
+
+    .home_link {
+    width: 30%;
+    text-align: center;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    font-size: 17px;
+    }
+
+    .home_login {
+      font-size: 17px;
+    }
+
+    .home_signup {
+      margin-top: 30px;
+      font-size: 17px;
+    }
+  }
 </style>

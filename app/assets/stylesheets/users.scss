@@ -370,3 +370,142 @@ background-color: rgb(227, 227, 227);
   padding: 4px 50px;
   outline: 0;
 }
+
+@media(max-width: 415px) {
+  .user-show-wrapper {
+    background-color: inherit;
+  }
+
+  .user-show-container {
+    background-color: inherit;
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .user-image {
+    margin-left: 20px;
+  }
+
+  .following-status {
+    margin-left: 170px;
+  }
+
+  .edit-profile-link {
+    position: absolute;
+    top: 46%;
+    margin-left: 60%;
+    padding-left: 0;
+  }
+
+  .discovery {
+    width: 90%;
+  }
+
+  .create-date {
+    margin-left: 75%;
+  }
+
+  .empty {
+    height: 20px;
+  }
+
+  .user-edit-container {
+    width: auto;
+  }
+
+  .edit-name {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .edit-name-field {
+    width: 60%;
+    margin-left: 30px;
+  }
+
+  .edit-acount-id {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .edit-acount-field {
+    width: 60%;
+    margin-left: 20px;
+  }
+
+  .edit-introduce .edit-label {
+    margin-left: 30px;
+  }
+
+  .edit-introduce-field {
+    margin-top: 10px;
+    width: 60%;
+  }
+
+  .edit-profile-button {
+    margin-top: 110px;
+  }
+
+  .following-wrapper {
+    background-color: inherit;
+  }
+
+  .following-container {
+    width: auto;
+  }
+
+  .following-user {
+    width: 90%;
+  }
+
+  .following {
+    width: 100%;
+    margin-left: 10%;
+  }
+
+  #following-form {
+    position: absolute;
+    left: 180px;
+    top: 30px;
+  }
+
+  .s-follow {
+    margin-left: 35px;
+  }
+
+  .s-unfollow {
+    margin-left: 35px;
+  }
+
+  .user-new-wrapper {
+    background-color: inherit;
+  }
+
+  .user-new-container {
+    background-color: inherit;
+    height: auto;
+    width: auto;
+  }
+
+  .user-new-form {
+    position: static;
+    width: auto;
+    height: auto;
+  }
+
+  .signup-form {
+    width: 90%;
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .signup {
+    margin-left: 5%;
+  }
+
+  .signup-button {
+    margin-top: 40px;
+  }
+}

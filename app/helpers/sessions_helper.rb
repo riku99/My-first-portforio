@@ -1,6 +1,6 @@
 module SessionsHelper
 
-  # sessionメソッドにより、ブラウザのcookieのuser_idというキーにユーザーのidを値として入れる
+  # sessionメソッドにより、ブラウザのcookieのuser_idというキーにユーザーのidを暗号化し、値として入れる
   # sessionがあることがログインしているということなので、このメソッドでログイン状態となる
   def log_in(user)
     session[:user_id] = user.id
@@ -17,7 +17,6 @@ module SessionsHelper
     if (user_id = session[:user_id])
       # .findだとログインしてなくidの値がnilの場合にエラーが発生してしまう
       # ログインしている状態とそうでない状態でただrailsの振る舞いを分けたいだけなのでエラーではなくnilを返すのが好ましいためfind_byを使用
-      # インスタンス変数に結果を代入することで以後の値の呼び出しをメソッドではなく変数で指定できる
       @current_user ||= User.find_by(id: user_id)
     elsif (user_id = cookies.signed[:user_id])
       user = User.find_by(id: user_id)

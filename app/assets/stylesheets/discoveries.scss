@@ -256,3 +256,63 @@
   background-color: transparent;
   font-size: 20px;
 }
+
+@media(max-width: 415px) {
+  .discovery-index-wrapper {
+    background-color: inherit;
+  }
+
+  .discovery-index-container {
+    width: auto;
+  }
+
+  .discovery-index {
+    width: 100%;
+  }
+
+  .discovery_search {
+    width: 80%;
+    text-align: center;
+  }
+
+  .discovery-show-wrapper {
+    background-color: inherit;
+  }
+
+  .discovery-show-container {
+    width: auto;
+    margin: 0;
+  }
+
+  .discovery-show {
+    width: 100%;
+  }
+
+  .disc {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #discovery-new-link {
+    position: fixed;
+    top: 80%;
+    margin-left: 75%;
+  }
+
+  .new-wrapper {
+    background-color: inherit;
+  }
+
+  .discovery-new-contaienr {
+    width: auto;
+  }
+
+  .discovery-form {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .content-form {
+    width: 100%;
+  }
+}

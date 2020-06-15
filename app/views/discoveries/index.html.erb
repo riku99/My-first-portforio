@@ -9,59 +9,10 @@
             <i class="fa fa-search"></i>
           <% end %>
         <% end %>
-        <% @discoveries.each do |d| %>
-          <div class="discovery">
-            <%= link_to(user_path(d.user), id: "discovery-profile-link") do %>
-            <% if d.user.image.attached? %>
-              <div class="discovery-profile">
-                <%= image_tag d.user.image.variant(resize_to_fill: [40, 40]), class: "image d-image" %>
-                <% if d.user.name %>
-                  <p class="discovery-profile-name">
-                    <%= d.user.name %>
-                  </p>
-                <% end %>
-              </div>
-            <% else %>
-              <div class="discovery-profile">
-                <%= image_tag 'no-user.png', :size => '40x40', class: "no-image d-image" %>
-                <% if d.user.name %>
-                  <p class="discovery-profile-name">
-                    <%= d.user.name %>
-                  </p>
-                <% end %>
-              </div>
-            <% end %>
-          <% end %>
-          <%= link_to(discovery_path(d), id: "content-link") do %>
-          <div class="discovery-index-content">
-            <%= safe_join(d.content.split("\n"), tag(:br)) %>
-            <div class="create-date">
-              <%= l d.created_at %>
-            </div>
-          </div>
-        <% end %>
-
-        <% if logged_in? %>
-          <div id="favorite-<%= d.id %>">
-            <% if current_user.favorite?(d) %>
-              <%= render "shared/unfavorite", { object: d } %>
-            <% else %>
-              <%= render "shared/favorite", { object: d } %>
-            <% end %>
-          </div>
-        <% end %>
-
-        <% if logged_in? %>
-          <%= link_to(new_comment_path(params: { discovery_id: d.id} ), class: "comment-view") do %>
-          <i class="fa fa-comment"></i>
-          <span class="comment-count"><%= d.comments.count %></span>
-        <% end %>
-      <% end %>
+        <%= render "shared/discoveries" %>
+        <%= link_to "投稿する", new_discovery_path, id: "discovery-new-link" %>
+      </div>
     </div>
-  <% end %>
-  <%= link_to "投稿する", new_discovery_path, id: "discovery-new-link" %>
-</div>
-</div>
-</div>
+  </div>
 
 <%= render "shared/footer" %>

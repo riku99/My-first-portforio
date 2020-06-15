@@ -65,7 +65,6 @@ class UsersController < ApplicationController
   def imgd
     user = User.find(params[:id])
     user.image.purge    # ユーザーの画像を削除
-    #user.save    saveはupdateアクションで行うので、ここでは行わない
   end
 
   def following
@@ -81,8 +80,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :acount_id, :email, :password, :password_confirmation, :image, :introduce,
-                                 :score, :target_score)
+    params.require(:user).permit(:name, :acount_id, :email, :password, :password_confirmation, :image, :introduce)
   end
 
   def user_logged_in?

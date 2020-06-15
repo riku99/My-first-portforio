@@ -19,7 +19,7 @@ class DiscoveriesController < ApplicationController
     @discovery = current_user.discoveries.new(discovery_params)
       if @discovery.save
         flash[:info] = "投稿しました"
-        redirect_to discoveries_path
+        redirect_to feed_user_path(current_user)
       else
         render "new"
       end
@@ -28,7 +28,7 @@ class DiscoveriesController < ApplicationController
   def destroy
     @discovery.destroy
     flash[:danger] = "削除しました"
-    redirect_to discoveries_path
+    redirect_to feed_user_path(current_user)
   end
 
   private

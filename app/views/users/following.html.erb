@@ -1,11 +1,11 @@
 <% provide(:title, "フォロー中のユーザー") %>
 
-  <div class="following-wrapper">
-    <div class="following-container">
-      <div class="following-user">
-        <% @user.following.each do |f| %>
-          <div class="following">
-            <%= link_to(user_path(f), id: "following-user-link") do %>
+<div class="following-wrapper">
+  <div class="following-container">
+    <div class="following-user">
+      <% @user.following.each do |f| %>
+        <div class="following">
+          <%= link_to(user_path(f), id: "following-user-link") do %>
             <div class="following-user-image">
               <% if f.image.attached? %>
                 <%= image_tag f.image.variant(resize_to_fill: [60, 60]), class: "image following-img" %>
@@ -19,8 +19,8 @@
             <div class="following-user-name">
               <% if f.name %>
                 <%= f.name %>
-              </div>
-            <% end %>
+              <% end %>
+            </div>
           <% end %>
           <% unless current_user == f %>
             <div id="following-form">
@@ -28,7 +28,7 @@
                 <%= render "unfollow", {object: f, page: "following", user_id: @user.id, follow_view: "f-unfollow"} %>
               <% else %>
                 <%= render "follow", {object: f, page: "following", user_id: @user.id, follow_view: "f-follow"} %>
-              </div>
+            </div>
             <% end %>
           <% end %>
         </div>

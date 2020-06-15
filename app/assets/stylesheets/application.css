@@ -194,3 +194,9 @@ li {
 .ya-leave-to {
   transform: translateY(100px);
 }
+
+@media(max-width: 415px) {
+  header {
+    
+  }
+}

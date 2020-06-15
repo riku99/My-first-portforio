@@ -112,4 +112,10 @@
   .menu_appearance-leave-to {
     transform: translateX(300px);
   }
+
+  @media(max-width: 415px) {
+    .side_menu {
+      width: 150px;
+    }
+  }
 </style>
