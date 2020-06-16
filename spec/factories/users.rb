@@ -37,8 +37,6 @@ FactoryBot.define do
       name { "riku2" }
       email { "riku2@example.com" }
       acount_id { "wow" }
-      score { 2 }
-      target_score { 2 }
       password { "foobar" }
       password_confirmation { "foobar" }
     end
