@@ -14,7 +14,7 @@ RSpec.describe "Sessions", type: :request do
     before do
       post users_path, params: { user: user }
     end
-    it "ログイン状態じゃなくなる" do
+    it "ログイン状態じゃなくなること" do
        delete logout_path(user)
        expect(is_logged_in?).to_not be_truthy
     end

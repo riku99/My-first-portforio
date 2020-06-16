@@ -16,7 +16,6 @@ module LoginUser
   end
 
   def log_in_as
-    user.save
     post login_path, params: { session: FactoryBot.attributes_for(:user) }
   end
 

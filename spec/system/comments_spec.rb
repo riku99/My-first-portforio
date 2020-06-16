@@ -1,16 +1,14 @@
 require 'rails_helper'
   describe "Comments", type: :system do
     let(:user) { FactoryBot.create(:user) }
-    let(:discovery) { FactoryBot.create(:discovery) }
+    let!(:discovery) { FactoryBot.create(:discovery) }
 
     it "ユーザーがコメントを投稿し、表示される" do
       test_log_in(user)
-      discovery
       visit discoveries_path
       find(".comment-view").click
       expect(current_path).to eq new_comment_path
       fill_in "コメントをしよう！", with: "test comment"
-
       expect {
         click_button "post"
       }.to change(Comment, :count).by(1)
@@ -19,17 +17,17 @@ require 'rails_helper'
     end
 
     it "ログインしていない場合はコメントを作成できない" do
-      discovery
       visit new_comment_path
       expect(current_path).to eq login_path
+      expect(page).to have_css ".danger"
     end
 
-    it "ログイン済みでかつコメントがそのユーザーのコメントの場合削除できる", retry: 3 do
+    it "ログイン済みでかつコメントがそのユーザーのコメントの場合削除できる", retry: 5 do
       c_user = FactoryBot.create(:user, :with_comment)
       discovery = c_user.comments.first.discovery
       test_log_in(c_user)
       visit discoveries_path
-      click_link "content-link"
+      click_link "content-link", match: :first
       click_link "comment-content-link"
       expect {
         click_link "削除する"
@@ -39,7 +37,7 @@ require 'rails_helper'
       expect(current_path).to eq discovery_path(discovery)
     end
 
-    it "コメントのshow画面からコメントをお気に入り登録できる", retry: 5 do  # retryでランダムに落ちるテストを数回実行
+    it "コメントのshow画面からコメントをお気に入り登録できる", retry: 5 do
       comment = FactoryBot.create(:comment)
       test_log_in(user)
       visit discovery_path(comment.discovery)
@@ -70,7 +68,7 @@ require 'rails_helper'
       comment = FactoryBot.create(:comment)
       test_log_in(user)
       visit discoveries_path
-      click_link "content-link"
+      click_link "content-link", match: :first
       visit current_path    #なぜか一旦更新しないとコメントを見つけられないので更新
       page.all(".comment-view")[1].click
       fill_in "コメントをしよう！", with: "コメント"
