@@ -158,14 +158,11 @@
 }
 
 .edit-profile-link {
-  display: block;
-  text-align: center;
   text-decoration: none;
   color: rgb(0, 133, 255);
-  font-size: 13px;
-  position: fixed;
-  top: 46%;
-  padding-left: 370px;
+  position: absolute;
+  top: 38%;
+  margin-left: 49%;
 }
 
 .user-edit-wrapper {
@@ -402,15 +399,15 @@ background-color: rgb(227, 227, 227);
   }
 
   .following-status {
-    margin-left: 42%;
+    margin-left: 0;
+    padding-left: 13%;
     font-size: 15px;
   }
 
   .edit-profile-link {
-    position: fixed;
+    position: absolute;
     top: 44%;
-    margin-left: 60%;
-    padding-left: 0;
+    margin-left: 48%;
   }
 
   .discovery {
