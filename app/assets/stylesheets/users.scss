@@ -83,6 +83,7 @@
   padding-bottom: 20px;
   height: 50%;
   overflow: scroll;
+  position: relative;
 }
 
 .user-id {
@@ -382,17 +383,32 @@ background-color: rgb(227, 227, 227);
     margin: 0 auto;
   }
 
+  .user-profile-main {
+    height: 48%;
+  }
+
   .user-image {
     margin-left: 20px;
   }
 
+  .user-image .image {
+    width: 90px;
+    height: 90px;
+  }
+
+  .user-image .no-image {
+    width: 90px;
+    height: 90px;
+  }
+
   .following-status {
-    margin-left: 170px;
+    margin-left: 42%;
+    font-size: 15px;
   }
 
   .edit-profile-link {
-    position: absolute;
-    top: 46%;
+    position: fixed;
+    top: 44%;
     margin-left: 60%;
     padding-left: 0;
   }
@@ -498,11 +514,11 @@ background-color: rgb(227, 227, 227);
   }
 
   .s-follow {
-    margin-left: 35px;
+    margin-left: 10%;
   }
 
   .s-unfollow {
-    margin-left: 35px;
+    margin-left: 10%;
   }
 
   .user-new-wrapper {
