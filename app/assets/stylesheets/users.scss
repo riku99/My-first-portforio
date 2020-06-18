@@ -423,6 +423,15 @@ background-color: rgb(227, 227, 227);
     padding-top: 0;
   }
 
+  .edit-image-box {
+    margin-top: 4%;
+  }
+
+  #u_n_image {
+    width: 80px;
+    height: 80px;
+  }
+
   .edit-name {
     width: 90%;
     margin: 0 auto;
@@ -441,6 +450,10 @@ background-color: rgb(227, 227, 227);
   .edit-acount-field {
     width: 60%;
     margin-left: 20px;
+  }
+
+  .edit-label {
+    margin-top: 8%;
   }
 
   .edit-introduce .edit-label {
