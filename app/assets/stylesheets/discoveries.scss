@@ -59,6 +59,12 @@
   color: rgba(141, 142, 139, 0.6);
 }
 
+.favo-comment {
+  height: 24px;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+}
+
 .i-favo {
   font-size: 20px;
   float: left;
@@ -237,10 +243,11 @@
 }
 
 .discovery_search {
-  position: fixed;
-  top: 8%;
-  left: 50%;
-  transform: translateX(-50%);
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 3%;
 }
 
 #q_content_cont {
@@ -269,12 +276,7 @@
   .discovery-index {
     width: 100%;
   }
-
-  .discovery_search {
-    width: 80%;
-    text-align: center;
-  }
-
+  
   .discovery-show-wrapper {
     background-color: inherit;
   }

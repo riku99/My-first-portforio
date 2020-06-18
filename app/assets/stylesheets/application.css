@@ -11,6 +11,7 @@ html {
 body {
   height: 100%;
   margin: 0;
+  font-family: sans-serif;
 }
 
 a {
@@ -24,6 +25,7 @@ button {
 
 input {
   border: none;
+  -webkit-appearance: none;
 }
 
 header {
@@ -197,6 +199,6 @@ li {
 
 @media(max-width: 415px) {
   header {
-    
+
   }
 }

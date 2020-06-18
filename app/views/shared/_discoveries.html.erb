@@ -31,20 +31,20 @@
   <% end %>
 
     <% if logged_in? %>
-      <div id="favorite-<%= d.id %>">
-        <% if current_user.favorite?(d) %>
-          <%= render "shared/unfavorite", { object: d } %>
-        <% else %>
-          <%= render "shared/favorite", { object: d } %>
+      <div class="favo-comment">
+        <div id="favorite-<%= d.id %>">
+          <% if current_user.favorite?(d) %>
+            <%= render "shared/unfavorite", { object: d } %>
+          <% else %>
+            <%= render "shared/favorite", { object: d } %>
+          <% end %>
+        </div>
+
+        <%= link_to(new_comment_path(params: { discovery_id: d.id} ), class: "comment-view") do %>
+          <i class="fa fa-comment"></i>
+          <span class="comment-count"><%= d.comments.count %></span>
         <% end %>
       </div>
-    <% end %>
-
-    <% if logged_in? %>
-      <%= link_to(new_comment_path(params: { discovery_id: d.id} ), class: "comment-view") do %>
-        <i class="fa fa-comment"></i>
-        <span class="comment-count"><%= d.comments.count %></span>
-      <% end %>
     <% end %>
   </div>
 <% end %>
