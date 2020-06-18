@@ -16,7 +16,7 @@ import SelectLink from '../select_link.vue'
 var app = new Vue({
   el: "#edit-image-zone",
   data: {
-    user_image: "/assets/no-user.png"
+    user_image: "/no-user.png"
   },
   methods: {
     previewImage: function() {
