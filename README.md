@@ -1,26 +1,9 @@
 # README
 
-This is my first application!!
+Railsチュートリアルを一通りやってから自分で作成したTwitterのクローンのようなもの。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+基本的なCRUD、認証機能、お気に入り機能、コメント機能がある。
 
-Things you may want to cover:
+テストはrspecを使用している。
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+また、若干であるがvueを取り込みアニメーションやスタイルの変更を実装。
