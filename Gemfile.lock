@@ -133,7 +133,7 @@ GEM
     polyamorous (2.3.2)
       activerecord (>= 5.2.1)
     public_suffix (4.0.5)
-    puma (4.3.5)
+    puma (4.3.7)
       nio4r (~> 2.0)
     rack (2.2.3)
     rack-proxy (0.6.5)
@@ -269,7 +269,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
-  puma (~> 4.1)
+  puma (~> 4.3.6)
   rails
   rails-i18n
   ransack
